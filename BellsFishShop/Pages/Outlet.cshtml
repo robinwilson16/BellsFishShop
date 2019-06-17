@@ -1,0 +1,250 @@
+﻿@page "{outlet}"
+@model BellsFishShop.Pages.OutletModel
+@{
+    ViewData["Title"] = "Outlet";
+}
+
+<div id="CarouselHomePage">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/images/FramwellgateTopImg.jpg" alt="Restaurant &amp; Takeaway @@ Framwellgate" class="img-fluid" />
+            <div class="carousel-caption">
+                <div class="d-none d-md-block">
+                    <div class="row">
+                        <div class="col-md">
+                            <h3 class="OutletName NavbarLogoTrigger">
+                                Framewellgate Moor
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-md text-left">
+                            <h4>
+                                <i class="fas fa-home"></i> Address
+                            </h4>
+                            <h5>
+                                Bells Fish and Chips<br />
+                                Old Pit Lane<br />
+                                Durham<br />
+                                DH1 5HD<br />
+                            </h5>
+                        </div>
+                        <div class="col col-md text-left d-flex">
+                            <div class="ml-auto ContactDetails">
+                                <h4>
+                                    <i class="far fa-comment-dots"></i> Contact
+                                </h4>
+                                <h5>
+                                    <a href="tel:0191 3848974"><i class="fas fa-phone"></i> 0191 3848974</a><br />
+                                    <a href="mailto:bells@bellsfishshop.co.uk?subject=Website%20Enquiry"><i class="fas fa-envelope"></i> bells@bellsfishshop.co.uk</a>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md OutletFacilities">
+                        <ul class="nav justify-content-center">
+                            <li class="nav-item">
+                                <span class="nav-link active"><i class="fas fa-utensils"></i> Restaurant</span>
+                            </li>
+                            <li class="nav-item">
+                                <span class="nav-link active"><i class="fas fa-shopping-bag"></i> Takeaway</span>
+                            </li>
+                            <li class="nav-item">
+                                <span class="nav-link active"><i class="fas fa-beer"></i> Drought Beer Served Here</span>
+                            </li>
+                            <li class="nav-item">
+                                <span class="nav-link active"><i class="fas fa-parking"></i> Free Onsite Parking</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#CarouselHomePage" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#CarouselHomePage" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+</div>
+
+<div class="container MainContent Spacer">
+    <div class="row">
+        <div class="col-md Spacer">
+            <h3>
+                Framwellgate Moor
+            </h3>
+            <p>
+                Framwellgate Moor outlet was recently opened  in January 2019, conveniently located just off the A167 on Old Pit Lane near the Arniston Centre road offering both restaurant and take away facilities.
+            </p>
+        </div>
+    </div>
+    <div class="row Spacer">
+        <div class="col-md">
+            <h3>
+                Contact Details
+            </h3>
+            <div class="row">
+                <div class="col-lg SpacerAfter">
+                    <h4>
+                        <i class="fas fa-home"></i> Address
+                    </h4>
+                    Bells Fish and Chips<br />
+                    Old Pit Lane<br />
+                    Durham<br />
+                    DH1 5HD<br />
+                </div>
+                <div class="col-lg">
+                    <h4>
+                        <i class="far fa-comment-dots"></i> Contact
+                    </h4>
+                    <a href="tel:0191 3848974"><i class="fas fa-phone"></i> 0191 3848974</a><br />
+                    <a href="mailto:bells@bellsfishshop.co.uk?subject=Website%20Enquiry"><i class="fas fa-envelope"></i> bells@bellsfishshop.co.uk</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <h3>
+                Opening Times
+            </h3>
+            <table class="table table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Day</th>
+                        <th scope="col">Times</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Monday</td>
+                        <td>09:00 - 22:00</td>
+                    </tr>
+                    <tr>
+                        <td>Tuesday</td>
+                        <td>09:00 - 22:00</td>
+                    </tr>
+                    <tr>
+                        <td>Wednesday</td>
+                        <td>09:00 - 22:00</td>
+                    </tr>
+                    <tr>
+                        <td>Thursday</td>
+                        <td>09:00 - 22:00</td>
+                    </tr>
+                    <tr>
+                        <td>Friday</td>
+                        <td>09:00 - 22:00</td>
+                    </tr>
+                    <tr>
+                        <td>Saturday</td>
+                        <td>10:00 - 23:00</td>
+                    </tr>
+                    <tr>
+                        <td>Sunday</td>
+                        <td>10:00 - 20:00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md Spacer">
+            <h3>
+                Contact Form and Map
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md">
+            <div class="container">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-xl">
+                            <h4><i class="far fa-id-card"></i> Personal Details</h4>
+
+                            <div class="form-group row">
+                                <label asp-for="Contact.Name" class="col-md-4 col-form-label"></label>
+                                <div class="col-md-8">
+                                    <input asp-for="Contact.Name" class="form-control" />
+                                    <span asp-validation-for="Contact.Name" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label asp-for="Contact.Email" class="col-md-4 col-form-label"></label>
+                                <div class="col-md-8">
+                                    <input asp-for="Contact.Email" class="form-control" />
+                                    <span asp-validation-for="Contact.Email" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label asp-for="Contact.Telephone" class="col-md-4 col-form-label"></label>
+                                <div class="col-md-8">
+                                    <input asp-for="Contact.Telephone" class="form-control" />
+                                    <span asp-validation-for="Contact.Telephone" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl">
+                            <h4><i class="fas fa-envelope-open-text"></i> Enquiry</h4>
+
+                            <div class="form-group row">
+                                <div class="col-md">
+                                    <textarea asp-for="Contact.Enquiry" class="form-control"></textarea>
+                                    <span asp-validation-for="Contact.Enquiry" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md d-md-block d-sm-none">
+
+                        </div>
+                        <div class="col-xl-4 col-lg-8">
+                            <input type="hidden" asp-for="Contact.Outlet" class="form-control" />
+                            <button type="submit" class="btn btn-primary btn-block SendEnquiry SpacerAfter"><i class="fas fa-paper-plane"></i> Send Enquiry</button>
+                        </div>
+                        <div class="col-md d-md-block d-sm-none">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col col-md">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2299.6568662015184!2d-1.5822318841061203!3d54.8035735803102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487e7d0c2fa59733%3A0xf8a6e69319f37d24!2sBells+Fish+and+Chips!5e0!3m2!1sen!2suk!4v1560704356694!5m2!1sen!2suk" class="Map" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md Spacer">
+            <h3>
+                Reviews
+            </h3>
+            <div id="google-reviews" class="SpacerAfter">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.rawgit.com/stevenmonson/googleReviews/master/google-places.css">
+    <script src="https://cdn.jsdelivr.net/gh/stevenmonson/googleReviews@6e8f0d794393ec657dab69eb1421f3a60add23ef/google-places.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhP1zPFmpJpDVV4zEm6bbLFNLzpk9BnSI&libraries=places"></script>
+
+    <script>
+        $("#google-reviews").googlePlaces({
+            placeId: 'ChIJM5elLwx9fkgRJH3zGZPmpvg' //Find placeID: https://developers.google.com/places/place-id
+            , render: ['reviews']
+            , min_rating: 4
+            , max_rows: 6
+        });
+    </script>
+}

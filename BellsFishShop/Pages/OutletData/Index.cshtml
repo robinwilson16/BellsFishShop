@@ -1,0 +1,102 @@
+﻿@page
+@model BellsFishShop.Pages.OutletData.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Outlet[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Outlet[0].Details)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Outlet[0].Photo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Outlet[0].Address1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Outlet[0].Address2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Outlet[0].Address3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Outlet[0].Address4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Outlet[0].PostcodeOut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Outlet[0].PostcodeIn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Outlet[0].Tel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Outlet[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Outlet[0].GoogleMapLink)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Outlet) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Details)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Photo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostcodeOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostcodeIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GoogleMapLink)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.OutletID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.OutletID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.OutletID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

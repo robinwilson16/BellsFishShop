@@ -1,0 +1,94 @@
+﻿@page
+@model BellsFishShop.Pages.OutletData.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Outlet</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Outlet.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Outlet.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Outlet.Details)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Outlet.Details)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Outlet.Photo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Outlet.Photo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Outlet.Address1)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Outlet.Address1)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Outlet.Address2)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Outlet.Address2)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Outlet.Address3)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Outlet.Address3)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Outlet.Address4)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Outlet.Address4)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Outlet.PostcodeOut)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Outlet.PostcodeOut)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Outlet.PostcodeIn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Outlet.PostcodeIn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Outlet.Tel)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Outlet.Tel)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Outlet.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Outlet.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Outlet.GoogleMapLink)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Outlet.GoogleMapLink)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Outlet.OutletID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

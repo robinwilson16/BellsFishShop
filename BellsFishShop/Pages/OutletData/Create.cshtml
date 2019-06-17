@@ -1,0 +1,89 @@
+﻿@page
+@model BellsFishShop.Pages.OutletData.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Outlet</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Outlet.Title" class="control-label"></label>
+                <input asp-for="Outlet.Title" class="form-control" />
+                <span asp-validation-for="Outlet.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Outlet.Details" class="control-label"></label>
+                <input asp-for="Outlet.Details" class="form-control" />
+                <span asp-validation-for="Outlet.Details" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Outlet.Photo" class="control-label"></label>
+                <input asp-for="Outlet.Photo" class="form-control" />
+                <span asp-validation-for="Outlet.Photo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Outlet.Address1" class="control-label"></label>
+                <input asp-for="Outlet.Address1" class="form-control" />
+                <span asp-validation-for="Outlet.Address1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Outlet.Address2" class="control-label"></label>
+                <input asp-for="Outlet.Address2" class="form-control" />
+                <span asp-validation-for="Outlet.Address2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Outlet.Address3" class="control-label"></label>
+                <input asp-for="Outlet.Address3" class="form-control" />
+                <span asp-validation-for="Outlet.Address3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Outlet.Address4" class="control-label"></label>
+                <input asp-for="Outlet.Address4" class="form-control" />
+                <span asp-validation-for="Outlet.Address4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Outlet.PostcodeOut" class="control-label"></label>
+                <input asp-for="Outlet.PostcodeOut" class="form-control" />
+                <span asp-validation-for="Outlet.PostcodeOut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Outlet.PostcodeIn" class="control-label"></label>
+                <input asp-for="Outlet.PostcodeIn" class="form-control" />
+                <span asp-validation-for="Outlet.PostcodeIn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Outlet.Tel" class="control-label"></label>
+                <input asp-for="Outlet.Tel" class="form-control" />
+                <span asp-validation-for="Outlet.Tel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Outlet.Email" class="control-label"></label>
+                <input asp-for="Outlet.Email" class="form-control" />
+                <span asp-validation-for="Outlet.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Outlet.GoogleMapLink" class="control-label"></label>
+                <input asp-for="Outlet.GoogleMapLink" class="form-control" />
+                <span asp-validation-for="Outlet.GoogleMapLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
