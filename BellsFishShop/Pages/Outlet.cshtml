@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-md">
                             <h3 class="OutletName NavbarLogoTrigger">
-                                Framewellgate Moor
+                                @Model.Outlet.Title
                             </h3>
                         </div>
                     </div>
@@ -23,10 +23,30 @@
                                 <i class="fas fa-home"></i> Address
                             </h4>
                             <h5>
-                                Bells Fish and Chips<br />
-                                Old Pit Lane<br />
-                                Durham<br />
-                                DH1 5HD<br />
+                                @if (Model.Outlet.Address1 != null)
+                                {
+                                    @Model.Outlet.Address1 @:<br />
+                                }
+
+                                @if (Model.Outlet.Address2 != null)
+                                {
+                                    @Model.Outlet.Address2 @:<br />
+                                }
+
+                                @if (Model.Outlet.Address3 != null)
+                                {
+                                    @Model.Outlet.Address3 @:<br />
+                                }
+
+                                @if (Model.Outlet.Address4 != null)
+                                {
+                                    @Model.Outlet.Address4 @:<br />
+                                }
+
+                                @if (Model.Outlet.PostcodeOut != null)
+                                {
+                                    @Model.Outlet.PostcodeOut @Model.Outlet.PostcodeIn
+                                }
                             </h5>
                         </div>
                         <div class="col col-md text-left d-flex">
@@ -35,8 +55,15 @@
                                     <i class="far fa-comment-dots"></i> Contact
                                 </h4>
                                 <h5>
-                                    <a href="tel:0191 3848974"><i class="fas fa-phone"></i> 0191 3848974</a><br />
-                                    <a href="mailto:bells@bellsfishshop.co.uk?subject=Website%20Enquiry"><i class="fas fa-envelope"></i> bells@bellsfishshop.co.uk</a>
+                                    @if (Model.Outlet.Tel != null)
+                                    {
+                                        <a href="tel:@Model.Outlet.Tel"><i class="fas fa-phone"></i> @Model.Outlet.Tel</a><br />
+                                    }
+
+                                    @if (Model.Outlet.Email != null)
+                                    {
+                                        <a href="mailto:@Model.Outlet.Email?subject=Website%20Enquiry"><i class="fas fa-envelope"></i> @Model.Outlet.Email</a>
+                                    }
                                 </h5>
                             </div>
                         </div>
@@ -77,10 +104,10 @@
     <div class="row">
         <div class="col-md Spacer">
             <h3>
-                Framwellgate Moor
+                @Model.Outlet.Title
             </h3>
             <p>
-                Framwellgate Moor outlet was recently opened  in January 2019, conveniently located just off the A167 on Old Pit Lane near the Arniston Centre road offering both restaurant and take away facilities.
+                @Model.Outlet.Details
             </p>
         </div>
     </div>
@@ -94,10 +121,30 @@
                     <h4>
                         <i class="fas fa-home"></i> Address
                     </h4>
-                    Bells Fish and Chips<br />
-                    Old Pit Lane<br />
-                    Durham<br />
-                    DH1 5HD<br />
+                    @if (Model.Outlet.Address1 != null)
+                    {
+                        @Model.Outlet.Address1 @:<br />
+                    }
+
+                    @if (Model.Outlet.Address2 != null)
+                    {
+                        @Model.Outlet.Address2 @:<br />
+                    }
+
+                    @if (Model.Outlet.Address3 != null)
+                    {
+                        @Model.Outlet.Address3 @:<br />
+                    }
+
+                    @if (Model.Outlet.Address4 != null)
+                    {
+                        @Model.Outlet.Address4 @:<br />
+                    }
+
+                    @if (Model.Outlet.PostcodeOut != null)
+                    {
+                        @Model.Outlet.PostcodeOut @Model.Outlet.PostcodeIn
+                    }
                 </div>
                 <div class="col-lg">
                     <h4>
@@ -219,7 +266,7 @@
             </div>
         </div>
         <div class="col col-md">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2299.6568662015184!2d-1.5822318841061203!3d54.8035735803102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487e7d0c2fa59733%3A0xf8a6e69319f37d24!2sBells+Fish+and+Chips!5e0!3m2!1sen!2suk!4v1560704356694!5m2!1sen!2suk" class="Map" allowfullscreen></iframe>
+            <iframe src="@Model.Outlet.GoogleMapLink" class="Map" allowfullscreen></iframe>
         </div>
     </div>
     <div class="row">
@@ -241,7 +288,7 @@
 
     <script>
         $("#google-reviews").googlePlaces({
-            placeId: 'ChIJM5elLwx9fkgRJH3zGZPmpvg' //Find placeID: https://developers.google.com/places/place-id
+            placeId: '@Model.Outlet.GoogleReviewsLink' //Find placeID: https://developers.google.com/places/place-id
             , render: ['reviews']
             , min_rating: 4
             , max_rows: 6

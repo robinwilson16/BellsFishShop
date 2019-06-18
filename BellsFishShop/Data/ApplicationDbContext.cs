@@ -18,5 +18,14 @@ namespace BellsFishShop.Data
         public DbSet<MenuCategory> MenuCategory { get; set; }
         public DbSet<MenuItem> MenuItem { get; set; }
         public DbSet<Outlet> Outlet { get; set; }
+        public DbSet<OutletOpeningTime> OutletOpeningTime { get; set; }
+        public DbSet<OutletFacility> OutletFacility { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Outlet>()
+                .HasIndex(o => new { o.OutletRef });
+        }
     }
 }

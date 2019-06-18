@@ -15,9 +15,19 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Outlet.OutletID" />
             <div class="form-group">
+                <label asp-for="Outlet.OutletRef" class="control-label"></label>
+                <input asp-for="Outlet.OutletRef" class="form-control" />
+                <span asp-validation-for="Outlet.OutletRef" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Outlet.Title" class="control-label"></label>
                 <input asp-for="Outlet.Title" class="form-control" />
                 <span asp-validation-for="Outlet.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Outlet.SubTitle" class="control-label"></label>
+                <input asp-for="Outlet.SubTitle" class="form-control" />
+                <span asp-validation-for="Outlet.SubTitle" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Outlet.Details" class="control-label"></label>
@@ -28,6 +38,11 @@
                 <label asp-for="Outlet.Photo" class="control-label"></label>
                 <input asp-for="Outlet.Photo" class="form-control" />
                 <span asp-validation-for="Outlet.Photo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Outlet.HeaderImage" class="control-label"></label>
+                <input asp-for="Outlet.HeaderImage" class="form-control" />
+                <span asp-validation-for="Outlet.HeaderImage" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Outlet.Address1" class="control-label"></label>
@@ -73,6 +88,11 @@
                 <label asp-for="Outlet.GoogleMapLink" class="control-label"></label>
                 <input asp-for="Outlet.GoogleMapLink" class="form-control" />
                 <span asp-validation-for="Outlet.GoogleMapLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Outlet.GoogleReviewsLink" class="control-label"></label>
+                <input asp-for="Outlet.GoogleReviewsLink" class="form-control" />
+                <span asp-validation-for="Outlet.GoogleReviewsLink" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

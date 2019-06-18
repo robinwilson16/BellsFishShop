@@ -10,14 +10,27 @@ namespace BellsFishShop.Models
     {
         public int OutletID { get; set; }
 
+        [StringLength(50)]
+        public string OutletRef { get; set; }
+
+        [Display(Name = "Title Displayed on Outlet Page")]
+        [StringLength(100)]
         public string Title { get; set; }
+
+        [Display(Name = "Subtitle Displayed on Homepage")]
+        [StringLength(100)]
+        public string SubTitle { get; set; }
 
         [Display(Name = "Main Details About This Outlet")]
         public string Details { get; set; }
 
-        [Display(Name = "Photo of the Venue")]
+        [Display(Name = "Photo Displayed on Homepage")]
         [Required]
         public string Photo { get; set; }
+
+        [Display(Name = "Top Banner Image Displayed on Outlet Page")]
+        [Required]
+        public string HeaderImage { get; set; }
 
         [Display(Name = "Address")]
         [Required]
@@ -51,5 +64,11 @@ namespace BellsFishShop.Models
         public string Email { get; set; }
 
         public string GoogleMapLink { get; set; }
+
+        public string GoogleReviewsLink { get; set; }
+
+        public ICollection<OutletOpeningTime> OutletOpeningTime { get; set; }
+
+        public ICollection<OutletFacility> OutletFacility { get; set; }
     }
 }

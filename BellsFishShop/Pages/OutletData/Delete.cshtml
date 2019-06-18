@@ -13,10 +13,22 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Outlet.OutletRef)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Outlet.OutletRef)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Outlet.Title)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Outlet.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Outlet.SubTitle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Outlet.SubTitle)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Outlet.Details)
@@ -29,6 +41,12 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Outlet.Photo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Outlet.HeaderImage)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Outlet.HeaderImage)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Outlet.Address1)
@@ -83,6 +101,12 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Outlet.GoogleMapLink)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Outlet.GoogleReviewsLink)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Outlet.GoogleReviewsLink)
         </dd>
     </dl>
     
