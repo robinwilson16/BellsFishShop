@@ -29,6 +29,11 @@
     background-color: #ffffff;
 }
 
+.MenuContent h3 {
+    padding: 10px;
+    font-family: 'Permanent Marker', cursive;
+}
+
 .LeftColumnBG {
     background-image: url('/images/BellsLogoBackground.png');
     background-repeat: no-repeat;
@@ -68,7 +73,8 @@
     padding-top: 100px;
 }
 
-.body-content .container.MainContent h3 {
+.body-content .container.MainContent h3,
+.Menu > .row > .col-md > h3 {
     font-family: 'Pacifico', cursive;
     color: #00aeff;
     border-bottom: 2px dashed #000080;
@@ -78,14 +84,9 @@
     min-height: 45px;
 }
 
-.body-content .container.MainContent-Framewellgate h3 {
-    font-family: 'Pacifico', cursive;
-    color: #c0c0c0;
-    border-bottom: 2px dashed #c0c0c0;
-    background-image: url('/images/FishSmall.gif');
-    background-repeat: no-repeat;
-    background-position: right;
-    min-height: 45px;
+.body-content .container.MainContent h4,
+.carousel-caption h4 {
+    font-family: 'Permanent Marker', cursive;
 }
 
 .carousel-caption {

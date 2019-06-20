@@ -32,6 +32,10 @@ namespace BellsFishShop.Models
         [Required]
         public string HeaderImage { get; set; }
 
+        [Display(Name = "Photo Displayed on Outlet Page")]
+        [Required]
+        public string Photo2 { get; set; }
+
         [Display(Name = "Address")]
         [Required]
         public string Address1 { get; set; }

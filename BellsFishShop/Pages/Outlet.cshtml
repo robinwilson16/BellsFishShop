@@ -7,7 +7,7 @@
 <div id="CarouselHomePage">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="~/images/FramwellgateTopImg.jpg" alt="Restaurant &amp; Takeaway @@ Framwellgate" class="img-fluid" />
+            <img src="~/images/@Model.Outlet.HeaderImage" alt="@Model.Outlet.Title" class="img-fluid" />
             <div class="carousel-caption">
                 <div class="d-none d-md-block">
                     <div class="row">
@@ -106,9 +106,14 @@
             <h3>
                 @Model.Outlet.Title
             </h3>
-            <p>
-                @Model.Outlet.Details
-            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            @Html.Raw(Model.Outlet.Details)
+        </div>
+        <div class="col-md-4 text-center">
+            <img src="~/images/@Model.Outlet.Photo2" alt="@Model.Outlet.Title" class="img-fluid" />
         </div>
     </div>
     <div class="row Spacer">
@@ -150,8 +155,8 @@
                     <h4>
                         <i class="far fa-comment-dots"></i> Contact
                     </h4>
-                    <a href="tel:0191 3848974"><i class="fas fa-phone"></i> 0191 3848974</a><br />
-                    <a href="mailto:bells@bellsfishshop.co.uk?subject=Website%20Enquiry"><i class="fas fa-envelope"></i> bells@bellsfishshop.co.uk</a>
+                    <a href="tel:@Model.Outlet.Tel"><i class="fas fa-phone"></i> @Model.Outlet.Tel</a><br />
+                    <a href="mailto:@Model.Outlet.Email?subject=Website%20Enquiry"><i class="fas fa-envelope"></i> @Model.Outlet.Email</a>
                 </div>
             </div>
         </div>
