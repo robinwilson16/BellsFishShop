@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,11 +12,16 @@ namespace BellsFishShop.Models
     {
         public int MenuItemID { get; set; }
 
+        [JsonIgnore]
         public int MenuCategoryID { get; set; }
 
         [StringLength(100)]
         [Required(ErrorMessage = "The menu item title is required (e.g. Cod/Salmon)")]
         public string Title { get; set; }
+
+        [Display(Name = "Additional Title Text")]
+        [StringLength(100)]
+        public string TitleExtra { get; set; }
 
         [StringLength(200)]
         public string Description { get; set; }
@@ -24,6 +30,7 @@ namespace BellsFishShop.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
+        [JsonIgnore]
         public MenuCategory MenuCategory { get; set; }
     }
 }

@@ -1,4 +1,138 @@
-﻿body {
+﻿@font-face {
+    font-family: 'vegetarian';
+    src: url('/fonts/vegetarian.eot?53ylxw');
+    src: url('/fonts/vegetarian.eot?#iefix53ylxw') format('embedded-opentype'), 
+        url('/fonts/vegetarian.woff?53ylxw') format('woff'), 
+        url('/fonts/vegetarian.ttf?53ylxw') format('truetype'), 
+        url('/fonts/vegetarian.svg?53ylxw#vegetarian') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="veg-"], [class*=" veg-"] {
+    font-family: 'vegetarian';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.veg-indian-vegetarian:before {
+    content: "\22a1";
+    color: green;
+}
+
+.veg-vegetarian:before {
+    content: "\24cb";
+    color: green;
+}
+
+.vegetarianicon {
+    font-family: "vegetarian";
+    color: green;
+}
+
+@font-face {
+    font-family: 'glutenfree';
+    src: url('/fonts/glutenfree.eot');
+    src: url('/fonts/glutenfree.eot') format('embedded-opentype'), 
+        url('/fonts/glutenfree.woff') format('woff'), 
+        url('/fonts/glutenfree.ttf') format('truetype'), 
+        url('/fonts/glutenfree.svg#glutenfree') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="glutenfree-"], [class*=" glutenfree-"] {
+    font-family: 'glutenfree';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.glutenfree-gf1:before {
+    content: "\e900";
+    color: #ffb726;
+}
+
+.glutenfree-gf2:before {
+    content: "\e901";
+    color: #ff5619;
+    margin-left: -1em;
+}
+
+.glutenfreeicon {
+    font-family: "glutenfree";
+    color: #ffb726;
+}
+
+.bd-callout {
+    padding: 0.75rem;
+    border: 1px solid #eee;
+    border-left-width: .25rem;
+    border-radius: .25rem
+}
+
+.bd-callout h4 {
+    margin-top: 0;
+    margin-bottom: .25rem
+}
+
+.bd-callout p:last-child {
+    margin-bottom: 0
+}
+
+.bd-callout code {
+    border-radius: .25rem
+}
+
+.bd-callout + .bd-callout {
+    margin-top: -.25rem
+}
+
+.bd-callout-info {
+    border-left-color: #5bc0de
+}
+
+.bd-callout-info h4 {
+    color: #5bc0de
+}
+
+.bd-callout-warning {
+    border-left-color: #f0ad4e
+}
+
+.bd-callout-warning h4 {
+    color: #f0ad4e
+}
+
+.bd-callout-danger {
+    border-left-color: #d9534f
+}
+
+.bd-callout-danger h4 {
+    color: #d9534f
+}
+
+.bd-callout-bells {
+    border-left-color: #00aeff;
+    background-color: #ffffff;
+}
+
+.bd-callout-bells h4 {
+    color: #00aeff
+}
+
+body {
     background: url(/images/WoodBackground.jpg);
     font-family: 'Roboto', sans-serif;
 }
@@ -128,6 +262,15 @@
     color: #ffffff;
     border: 1px solid #c0c0c0;
     border-radius: 4px;
+}
+
+.Loading {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.Loading h1 {
+    font-size: 3em;
 }
 
 textarea.form-control {

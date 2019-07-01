@@ -1,0 +1,54 @@
+﻿@page
+@model BellsFishShop.Pages.MenuData.Index2Model
+
+@{
+    ViewData["Title"] = "Index2";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Menu[0].MenuRef)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Menu[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Menu[0].TextTop)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Menu[0].TextBottom)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Menu) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuRef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TextTop)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TextBottom)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.MenuID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.MenuID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.MenuID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

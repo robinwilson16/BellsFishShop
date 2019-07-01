@@ -26,6 +26,8 @@ namespace BellsFishShop.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Outlet>()
                 .HasIndex(o => new { o.OutletRef });
+            modelBuilder.Entity<Menu>()
+                .HasIndex(m => new { m.MenuRef });
         }
     }
 }

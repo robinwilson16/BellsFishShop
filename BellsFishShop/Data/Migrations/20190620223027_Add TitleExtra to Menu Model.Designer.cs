@@ -4,14 +4,16 @@ using BellsFishShop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BellsFishShop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190620223027_Add TitleExtra to Menu Model")]
+    partial class AddTitleExtratoMenuModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,9 +40,6 @@ namespace BellsFishShop.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("MenuRef")
-                        .HasMaxLength(50);
-
                     b.Property<string>("TextBottom")
                         .HasMaxLength(1000);
 
@@ -51,9 +50,10 @@ namespace BellsFishShop.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.HasKey("MenuID");
+                    b.Property<string>("TitleExtra")
+                        .HasMaxLength(100);
 
-                    b.HasIndex("MenuRef");
+                    b.HasKey("MenuID");
 
                     b.ToTable("Menu");
                 });
@@ -70,9 +70,6 @@ namespace BellsFishShop.Data.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<string>("TitleExtra")
                         .HasMaxLength(100);
 
                     b.HasKey("MenuCategoryID");

@@ -10,6 +10,9 @@ namespace BellsFishShop.Models
     {
         public int MenuID { get; set; }
 
+        [StringLength(50)]
+        public string MenuRef { get; set; }
+
         [StringLength(100)]
         [Required(ErrorMessage = "The menu title is required (e.g. Food/Drinks)")]
         public string Title { get; set; }

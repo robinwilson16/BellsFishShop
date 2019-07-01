@@ -1,0 +1,48 @@
+﻿@page
+@model BellsFishShop.Pages.MenuCategoryData.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MenuCategory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MenuCategory.MenuID" class="control-label"></label>
+                <select asp-for="MenuCategory.MenuID" class ="form-control" asp-items="ViewBag.MenuID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MenuCategory.Title" class="control-label"></label>
+                <input asp-for="MenuCategory.Title" class="form-control" />
+                <span asp-validation-for="MenuCategory.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MenuCategory.TitleExtra" class="control-label"></label>
+                <input asp-for="MenuCategory.TitleExtra" class="form-control" />
+                <span asp-validation-for="MenuCategory.TitleExtra" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MenuCategory.Description" class="control-label"></label>
+                <input asp-for="MenuCategory.Description" class="form-control" />
+                <span asp-validation-for="MenuCategory.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
