@@ -239,6 +239,7 @@ body {
 
 .btn-Bells {
     background-color: #00aeff;
+    color: #ffffff;
 }
 
 .btn-BellsDark {
@@ -262,6 +263,10 @@ body {
     color: #ffffff;
     border: 1px solid #c0c0c0;
     border-radius: 4px;
+}
+
+tr.CurrentDay {
+    font-weight: bold;
 }
 
 .Loading {

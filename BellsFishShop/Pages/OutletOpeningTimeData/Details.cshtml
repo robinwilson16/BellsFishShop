@@ -1,0 +1,43 @@
+﻿@page
+@model BellsFishShop.Pages.OutletOpeningTimeData.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>OutletOpeningTime</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OutletOpeningTime.DayID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OutletOpeningTime.DayID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OutletOpeningTime.OpeningTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OutletOpeningTime.OpeningTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OutletOpeningTime.ClosingTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OutletOpeningTime.ClosingTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OutletOpeningTime.Outlet)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OutletOpeningTime.Outlet.Address1)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.OutletOpeningTime.OutletOpeningTimeID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

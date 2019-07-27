@@ -1,0 +1,50 @@
+﻿@page
+@model BellsFishShop.Pages.OutletOpeningTimeData.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>OutletOpeningTime</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="OutletOpeningTime.OutletOpeningTimeID" />
+            <div class="form-group">
+                <label asp-for="OutletOpeningTime.OutletID" class="control-label"></label>
+                <select asp-for="OutletOpeningTime.OutletID" class="form-control" asp-items="ViewBag.OutletID"></select>
+                <span asp-validation-for="OutletOpeningTime.OutletID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OutletOpeningTime.DayID" class="control-label"></label>
+                <input asp-for="OutletOpeningTime.DayID" class="form-control" />
+                <span asp-validation-for="OutletOpeningTime.DayID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OutletOpeningTime.OpeningTime" class="control-label"></label>
+                <input asp-for="OutletOpeningTime.OpeningTime" class="form-control" />
+                <span asp-validation-for="OutletOpeningTime.OpeningTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OutletOpeningTime.ClosingTime" class="control-label"></label>
+                <input asp-for="OutletOpeningTime.ClosingTime" class="form-control" />
+                <span asp-validation-for="OutletOpeningTime.ClosingTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

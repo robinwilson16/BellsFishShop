@@ -1,0 +1,4 @@
+﻿body {
+    overflow-x: hidden; /*bottom scroll*/
+    overflow-y: hidden; /*right scroll*/
+}

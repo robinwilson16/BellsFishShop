@@ -18,9 +18,17 @@ namespace BellsFishShop.Pages
         }
 
         public string MenuRef { get; set; }
+        public bool? VegetarianOnly { get; set; }
+        public bool? GlutenFreeOnly { get; set; }
 
-        public void OnGet(string menu)
+        public void OnGet(string menu, bool? vegetarian, bool? glutenFree, bool? kiosk, int screen)
         {
+            if (kiosk == true)
+            {
+                ViewData["KioskMode"] = true;
+                ViewData["Screen"] = screen;
+            }
+
             string defaultMenu = _configuration.GetSection("Menu")["DefaultMenu"];
             if (menu != null)
             {
@@ -29,6 +37,16 @@ namespace BellsFishShop.Pages
             else
             {
                 MenuRef = defaultMenu;
+            }
+
+            if (vegetarian != null)
+            {
+                VegetarianOnly = vegetarian;
+            }
+
+            if (glutenFree != null)
+            {
+                GlutenFreeOnly = glutenFree;
             }
         }
     }

@@ -1,0 +1,54 @@
+﻿@page
+@model BellsFishShop.Pages.OutletOpeningTimeData.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OutletOpeningTime[0].DayID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OutletOpeningTime[0].OpeningTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OutletOpeningTime[0].ClosingTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OutletOpeningTime[0].Outlet)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.OutletOpeningTime) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DayID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpeningTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClosingTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Outlet.Address1)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.OutletOpeningTimeID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.OutletOpeningTimeID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.OutletOpeningTimeID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

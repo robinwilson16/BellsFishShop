@@ -1,0 +1,42 @@
+﻿@page
+@model BellsFishShop.Pages.OutletFacilityData.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OutletFacility[0].Outlet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OutletFacility[0].Facility)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.OutletFacility) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Outlet.Address1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Facility.FacilityID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.OutletFacilityID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.OutletFacilityID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.OutletFacilityID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

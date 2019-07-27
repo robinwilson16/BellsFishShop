@@ -1,0 +1,89 @@
+﻿/* Fish Animation */
+svg#fish {
+    z-index: 1000;
+}
+
+svg.fish {
+    overflow: visible;
+}
+
+@keyframes swim {
+    0% {
+        margin-left: -235px;
+        margin-right: 100%;
+    }
+
+    70% {
+        margin-left: 100%;
+        margin-right: -235px;
+    }
+
+    100% {
+        margin-left: 100%;
+        margin-right: -235px;
+    }
+}
+
+.fish {
+    display: none;
+}
+
+.fishAnimate {
+    display: block;
+    width: 235px;
+    height: 104px;
+    margin-left: -235px;
+    margin-right: -235px;
+    position: absolute;
+    animation: swim 20s;
+    /*animation-iteration-count: infinite;*/
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+svg #fish1,
+svg #fish2,
+svg #fish3,
+svg #fish4,
+svg #fish5,
+svg #fish6 {
+    fill: #528484;
+    animation: bounce 2s infinite;
+}
+
+svg #fish2 {
+    animation-delay: 0.5s;
+}
+
+svg #fish3 {
+    animation-delay: 0.2s;
+}
+
+svg #fish4 {
+    animation-delay: 0.4s;
+}
+
+svg #fish5 {
+    animation-delay: 0.1s;
+}
+
+svg #fish6 {
+    animation-delay: 0.3s;
+}
+
+/**/
+@keyframes bounce {
+    0%, 50%, 100% {
+        transform: translateY(0);
+    }
+
+    25% {
+        transform: translateY(-5px);
+    }
+
+    75% {
+        transform: translateY(-3px);
+    }
+}
+
+/*END Fish Animation*/

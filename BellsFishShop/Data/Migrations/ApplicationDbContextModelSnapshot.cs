@@ -15,7 +15,7 @@ namespace BellsFishShop.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -68,6 +68,8 @@ namespace BellsFishShop.Data.Migrations
 
                     b.Property<int>("MenuID");
 
+                    b.Property<int>("ScreenNumber");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100);
@@ -108,6 +110,23 @@ namespace BellsFishShop.Data.Migrations
                     b.HasIndex("MenuCategoryID");
 
                     b.ToTable("MenuItem");
+                });
+
+            modelBuilder.Entity("BellsFishShop.Models.OpeningDay", b =>
+                {
+                    b.Property<int>("OpeningDayID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DayName");
+
+                    b.Property<int?>("OutletOpeningTimeID");
+
+                    b.HasKey("OpeningDayID");
+
+                    b.HasIndex("OutletOpeningTimeID");
+
+                    b.ToTable("OpeningDay");
                 });
 
             modelBuilder.Entity("BellsFishShop.Models.Outlet", b =>
@@ -216,6 +235,9 @@ namespace BellsFishShop.Data.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<string>("Name")
                         .HasMaxLength(256);
 
@@ -230,6 +252,8 @@ namespace BellsFishShop.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -261,6 +285,9 @@ namespace BellsFishShop.Data.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
@@ -301,6 +328,8 @@ namespace BellsFishShop.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -373,6 +402,28 @@ namespace BellsFishShop.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("BellsFishShop.Models.ApplicationRole", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Description");
+
+                    b.HasDiscriminator().HasValue("ApplicationRole");
+                });
+
+            modelBuilder.Entity("BellsFishShop.Models.ApplicationUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("Forename");
+
+                    b.Property<string>("Surname");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
             modelBuilder.Entity("BellsFishShop.Models.MenuCategory", b =>
                 {
                     b.HasOne("BellsFishShop.Models.Menu", "Menu")
@@ -389,10 +440,17 @@ namespace BellsFishShop.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("BellsFishShop.Models.OpeningDay", b =>
+                {
+                    b.HasOne("BellsFishShop.Models.OutletOpeningTime", "OutletOpeningTime")
+                        .WithMany()
+                        .HasForeignKey("OutletOpeningTimeID");
+                });
+
             modelBuilder.Entity("BellsFishShop.Models.OutletFacility", b =>
                 {
                     b.HasOne("BellsFishShop.Models.Facility", "Facility")
-                        .WithMany()
+                        .WithMany("OutletFacility")
                         .HasForeignKey("FacilityID")
                         .OnDelete(DeleteBehavior.Cascade);
 

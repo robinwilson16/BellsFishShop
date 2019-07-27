@@ -24,6 +24,10 @@ namespace BellsFishShop.Models
 
         public string Description { get; set; }
 
+        [Display(Name = "In kiosk mode, which screen to show this category on")]
+        public int ScreenNumber { get; set; }
+
+
         [JsonIgnore]
         public Menu Menu { get; set; }
 

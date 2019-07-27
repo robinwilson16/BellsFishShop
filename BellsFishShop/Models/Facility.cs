@@ -9,5 +9,7 @@ namespace BellsFishShop.Models
     {
         public int FacilityID { get; set; }
         public string Name { get; set; }
+
+        public ICollection<OutletFacility> OutletFacility { get; set; }
     }
 }

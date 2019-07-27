@@ -1,16 +1,21 @@
-﻿@page "{menu}"
+﻿@page "{menu?}"
 @model BellsFishShop.Pages.MenuModel
 @{
     ViewData["Title"] = "Menu";
 }
 
-<div id="CarouselHomePage">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="~/images/MenuFood.jpg" alt="Our Food Menu" class="img-fluid" />
+<partial name="Shared/_FishPartial" />
+
+@if ((bool?)ViewData["KioskMode"] != true)
+{
+    <div id="CarouselMenuPage">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/images/MenuFood.jpg" alt="Our Food Menu" class="img-fluid" />
+            </div>
         </div>
     </div>
-</div>
+}
 
 <div class="container Spacer Menu">
     <div class="row">
@@ -20,43 +25,110 @@
             </h3>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md">
-            <div class="bd-callout bd-callout-bells">
-                <div class="row">
-                    <div class="col text-center">
-                        <span class="glutenfree-gf1"></span><span class="glutenfree-gf2"></span> = Gluten Free
+
+    @if ((bool?)ViewData["KioskMode"] != true)
+    {
+        <div class="row">
+            <div class="col-md">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-search"></i></div>
                     </div>
-                    <div class="col text-center">
-                        <span class="veg-vegetarian"></span> = Vegitarian
+                    <input type="text" placeholder="Search our @Html.DisplayFor(model => model.MenuRef) menu here" class="form-control SearchMenu" />
+                    <div class="input-group-append">
+                        <div class="input-group-text ClearSearch btn btn-primary btn-Bells d-none"><i class="fas fa-eraser"></i>&nbsp;Clear</div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
+
+    @if ((bool?)ViewData["KioskMode"] != true)
+    {
+        @if (Model.MenuRef.Contains("Food") == true)
+        {
+            <div class="row Spacer">
+                <div class="col-md">
+                    <div class="bd-callout bd-callout-bells">
+                        <div class="row">
+                            <div class="col text-center">
+                                <span class="veg-vegetarian"></span> = Vegitarian
+                                <label class="switch-sm">
+                                    <input type="checkbox" class="VegitarianOnly">
+                                    <span class="slider-sm round"></span>
+                                </label>
+                            </div>
+                            <div class="col text-center">
+                                <span class="glutenfree-gf1"></span><span class="glutenfree-gf2"></span> = Gluten Free
+                                <label class="switch-sm">
+                                    <input type="checkbox" class="GlutenFreenOnly">
+                                    <span class="slider-sm round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
     <div class="row" id="MenuData">
         <div class="col-md text-center Loading">
             <h1><i class="fas fa-spinner fa-spin"></i></h1>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md">
-            <div class="bd-callout bd-callout-bells">
-                <div class="row">
-                    <div class="col text-center">
-                        <span class="glutenfree-gf1"></span><span class="glutenfree-gf2"></span> = Gluten Free
-                    </div>
-                    <div class="col text-center">
-                        <span class="veg-vegetarian"></span> = Vegitarian
+
+    @if ((bool?)ViewData["KioskMode"] != true)
+    {
+        @if (Model.MenuRef.Contains("Food") == true)
+        {
+            <div class="row Spacer">
+                <div class="col-md">
+                    <div class="bd-callout bd-callout-bells">
+                        <div class="row">
+                            <div class="col text-center">
+                                <span class="veg-vegetarian"></span> = Vegitarian
+                                <label class="switch-sm">
+                                    <input type="checkbox" class="VegitarianOnly">
+                                    <span class="slider-sm round"></span>
+                                </label>
+                            </div>
+                            <div class="col text-center">
+                                <span class="glutenfree-gf1"></span><span class="glutenfree-gf2"></span> = Gluten Free
+                                <label class="switch-sm">
+                                    <input type="checkbox" class="GlutenFreenOnly">
+                                    <span class="slider-sm round"></span>
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        }
+    }
 </div>
 
 <input type="hidden" id="MenuRef" value="@Model.MenuRef" />
+<input type="hidden" id="VegetarianOnly" value="@Model.VegetarianOnly" />
+<input type="hidden" id="GlutenFreeOnly" value="@Model.GlutenFreeOnly" />
+<input type="hidden" id="KioskMode" value="@ViewData["KioskMode"]" />
+<input type="hidden" id="KioskScreen" value="@ViewData["Screen"]" />
+
+@section Stylesheets {
+    <link rel="stylesheet" href="~/css/fish.css" asp-append-version="true" />
+
+    @if ((bool?)ViewData["KioskMode"] == true)
+    {
+        <link rel="stylesheet" href="~/css/menuKiosk.css" asp-append-version="true" />
+    }
+}
+
 
 @section Scripts {
     <script src="~/js/menu.js" asp-append-version="true"></script>
+
+    @if ((bool?)ViewData["KioskMode"] == true)
+    {
+        <script src="~/js/menuKiosk.js" asp-append-version="true"></script>
+    }
 }

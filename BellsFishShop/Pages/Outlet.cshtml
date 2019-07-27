@@ -72,18 +72,12 @@
                 <div class="row">
                     <div class="col-md OutletFacilities">
                         <ul class="nav justify-content-center">
-                            <li class="nav-item">
-                                <span class="nav-link active"><i class="fas fa-utensils"></i> Restaurant</span>
-                            </li>
-                            <li class="nav-item">
-                                <span class="nav-link active"><i class="fas fa-shopping-bag"></i> Takeaway</span>
-                            </li>
-                            <li class="nav-item">
-                                <span class="nav-link active"><i class="fas fa-beer"></i> Drought Beer Served Here</span>
-                            </li>
-                            <li class="nav-item">
-                                <span class="nav-link active"><i class="fas fa-parking"></i> Free Onsite Parking</span>
-                            </li>
+                            @foreach (var facility in Model.Outlet.OutletFacility)
+                            {
+                                <li class="nav-item">
+                                    <span class="nav-link">@Html.Raw(facility.Facility.Name)</span>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -172,34 +166,70 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Monday</td>
-                        <td>09:00 - 22:00</td>
-                    </tr>
-                    <tr>
-                        <td>Tuesday</td>
-                        <td>09:00 - 22:00</td>
-                    </tr>
-                    <tr>
-                        <td>Wednesday</td>
-                        <td>09:00 - 22:00</td>
-                    </tr>
-                    <tr>
-                        <td>Thursday</td>
-                        <td>09:00 - 22:00</td>
-                    </tr>
-                    <tr>
-                        <td>Friday</td>
-                        <td>09:00 - 22:00</td>
-                    </tr>
-                    <tr>
-                        <td>Saturday</td>
-                        <td>10:00 - 23:00</td>
-                    </tr>
-                    <tr>
-                        <td>Sunday</td>
-                        <td>10:00 - 20:00</td>
-                    </tr>
+                    @foreach (var day in Model.OpeningDay)
+                    {
+                        {
+                            var times = Model.Outlet.OutletOpeningTime.Where(o => o.DayID == day.OpeningDayID);
+                            var dayClass = "";
+
+                            if(day.OpeningDayID == Model.CurrentDayNumber)
+                            {
+                                dayClass = "table-light CurrentDay";
+                            }
+                            else
+                            {
+                                dayClass = "";
+                            }
+
+                            @if (times.Count() == 0)
+                            {
+                                <tr class="@dayClass">
+                                    <td>@day.DayName</td>
+                                    <td>Closed</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                var timeNum = 0;
+                                @foreach (var openingDay in times)
+                                {
+                                    timeNum += 1;
+
+                <tr class="@dayClass">
+                    @if (timeNum == 1)
+                    {
+                        <td rowspan="@times.Count()">@day.DayName</td>
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => openingDay.OpeningTime) - @Html.DisplayFor(modelItem => openingDay.ClosingTime)
+                    </td>
+                </tr>
+                                }
+                            }
+                        }
+                    }
+
+                    @*@foreach (var day in Model.OpeningDay)
+        {
+            {
+                var times = Model.Outlet.OutletOpeningTime.Where(o => o.DayID == day.OpeningDayID).FirstOrDefault();
+
+                <tr>
+                    <td>@day.DayName</td>
+                    <td class="text-center">
+                        @if (times != null)
+                        {
+                            @Html.DisplayFor(modelItem => times.OpeningTime) @:- @Html.DisplayFor(modelItem => times.ClosingTime)
+                        }
+                        else
+                        {
+                            @:Closed
+                        }
+
+                    </td>
+                </tr>
+            }
+        }*@
                 </tbody>
             </table>
         </div>

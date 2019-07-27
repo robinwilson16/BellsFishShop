@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BellsFishShop</title>
 
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#c0c0c0">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#c0c0c0">
+
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
@@ -27,9 +45,14 @@
     <link href="//fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet" />
     <link href="//fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet" />
 
+    <link rel="stylesheet" href="~/css/slider.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
+    @RenderSection("Stylesheets", required: false)
 </head>
 <body>
+    @if ((bool?)ViewData["KioskMode"] != true)
+    {
     <div class="container-fluid header-content">
         <div class="container-fluid">
             <div class="row">
@@ -60,6 +83,8 @@
             </div>
         </div>
     </div>
+
+    <partial name="_LoginPartial" />
 
     <nav class="navbar navbar-expand-lg navbar-toggleable-lg navbar-dark bg-dark sticky-top">
         <div class="container-fluid">
@@ -125,15 +150,17 @@
                         <a class="nav-link text-dark" href="~/Menu/Drinks"><i class="fas fa-beer"></i> Drinks Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Reviews"><i class="fas fa-question-circle"></i> About</a>
+                        <a class="nav-link text-dark" asp-area="" asp-page="/About"><i class="fas fa-question-circle"></i> About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Finance"><i class="fas fa-comment-dots"></i> Contact</a>
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Contact"><i class="fas fa-comment-dots"></i> Contact</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    }
+
     <div class="body-content">
         @*<partial name="_CookieConsentPartial" />*@
         <main role="main" class="pb-3">
@@ -141,6 +168,8 @@
         </main>
     </div>
 
+    @if ((bool?)ViewData["KioskMode"] != true)
+    {
     <div class="container">
         <div class="row">
             <div class="col-md">
@@ -150,6 +179,7 @@
             </div>
         </div>
     </div>
+    }
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
@@ -180,6 +210,8 @@
                 crossorigin="anonymous">
         </script>
     </environment>
+
+    <script src="~/js/modals.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
