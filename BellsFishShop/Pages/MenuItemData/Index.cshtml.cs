@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BellsFishShop.Data;
 using BellsFishShop.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BellsFishShop.Pages.MenuItemData
 {
+    [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
         private readonly BellsFishShop.Data.ApplicationDbContext _context;
@@ -21,10 +23,12 @@ namespace BellsFishShop.Pages.MenuItemData
 
         public IList<MenuItem> MenuItem { get;set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(int id)
         {
             MenuItem = await _context.MenuItem
-                .Include(m => m.MenuCategory).ToListAsync();
+                .Include(m => m.MenuCategory)
+                .Where(i => i.MenuCategoryID == id)
+                .ToListAsync();
         }
     }
 }

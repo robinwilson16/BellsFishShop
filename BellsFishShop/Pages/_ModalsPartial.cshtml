@@ -1,0 +1,80 @@
+﻿<div class="modal fade" id="MenuModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="MenuModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="MenuModalLabel"><i class="fas fa-list"></i> <span class="title">Menu Details</span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <nav class="nav nav-tabs" id="MenuTabs">
+                                <a class="nav-link active" id="MenuDetails-tab" data-toggle="tab" href="#MenuDetails-content" role="tab"
+                                   aria-controls="MenuDetails-content" aria-selected="true">Menu Details</a>
+                                <a class="nav-link" id="MenuItems-tab" data-toggle="tab" href="#MenuItems-content" role="tab"
+                                   aria-controls="MenuItems-content" aria-selected="false">Menu Items</a>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="MenuTabsContent">
+                        <div class="tab-pane fade show active" id="MenuDetails-content" role="tabpanel" aria-labelledby="MenuDetails-tab">
+                            <div class="container first">
+                                <div id="MenuDetails" class="row">
+                                    <div class="col text-center LoadingArea">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="MenuItems-content" role="tabpanel" aria-labelledby="MenuItems-tab">
+                            <div class="container first">
+                                <div id="MenuItems" class="row">
+                                    <div class="col text-center LoadingArea">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-target="#DeleteMenuModal"><i class="fas fa-trash-alt"></i> Delete</button>
+                <button type="button" class="btn btn-primary SaveCustomerButton"><i class="fas fa-save"></i> Apply</button>
+                <button type="button" class="btn btn-primary SaveCustomerButton"><i class="fas fa-save"></i> OK</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-sign-out-alt"></i> Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="MenuItemModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="MenuItemModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="MenuItemModalLabel"><i class="fas fa-edit"></i> <span class="title">Menu Item Details</span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div id="MenuItemDetails" class="row">
+                        <div class="col text-center LoadingArea">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-target="#DeleteMenuModal"><i class="fas fa-trash-alt"></i> Delete</button>
+                <button type="button" class="btn btn-primary SaveCustomerButton"><i class="fas fa-save"></i> Apply</button>
+                <button type="button" class="btn btn-primary SaveCustomerButton"><i class="fas fa-save"></i> OK</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-sign-out-alt"></i> Close</button>
+            </div>
+        </div>
+    </div>
+</div>

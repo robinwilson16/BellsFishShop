@@ -1,5 +1,6 @@
 ﻿@page "{outlet}"
 @model BellsFishShop.Pages.OutletModel
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
 @{
     ViewData["Title"] = "Outlet";
 }
@@ -172,7 +173,7 @@
                             var times = Model.Outlet.OutletOpeningTime.Where(o => o.DayID == day.OpeningDayID);
                             var dayClass = "";
 
-                            if(day.OpeningDayID == Model.CurrentDayNumber)
+                            if (day.OpeningDayID == Model.CurrentDayNumber)
                             {
                                 dayClass = "table-light CurrentDay";
                             }
@@ -195,41 +196,41 @@
                                 {
                                     timeNum += 1;
 
-                <tr class="@dayClass">
-                    @if (timeNum == 1)
-                    {
-                        <td rowspan="@times.Count()">@day.DayName</td>
-                    }
-                    <td>
-                        @Html.DisplayFor(modelItem => openingDay.OpeningTime) - @Html.DisplayFor(modelItem => openingDay.ClosingTime)
-                    </td>
-                </tr>
+                                    <tr class="@dayClass">
+                                        @if (timeNum == 1)
+                                        {
+                                            <td rowspan="@times.Count()">@day.DayName</td>
+                                        }
+                                        <td>
+                                            @Html.DisplayFor(modelItem => openingDay.OpeningTime) - @Html.DisplayFor(modelItem => openingDay.ClosingTime)
+                                        </td>
+                                    </tr>
                                 }
                             }
                         }
                     }
 
                     @*@foreach (var day in Model.OpeningDay)
-        {
-            {
-                var times = Model.Outlet.OutletOpeningTime.Where(o => o.DayID == day.OpeningDayID).FirstOrDefault();
-
-                <tr>
-                    <td>@day.DayName</td>
-                    <td class="text-center">
-                        @if (times != null)
                         {
-                            @Html.DisplayFor(modelItem => times.OpeningTime) @:- @Html.DisplayFor(modelItem => times.ClosingTime)
-                        }
-                        else
-                        {
-                            @:Closed
-                        }
+                            {
+                                var times = Model.Outlet.OutletOpeningTime.Where(o => o.DayID == day.OpeningDayID).FirstOrDefault();
 
-                    </td>
-                </tr>
-            }
-        }*@
+                                <tr>
+                                    <td>@day.DayName</td>
+                                    <td class="text-center">
+                                        @if (times != null)
+                                        {
+                                            @Html.DisplayFor(modelItem => times.OpeningTime) @:- @Html.DisplayFor(modelItem => times.ClosingTime)
+                                        }
+                                        else
+                                        {
+                                            @:Closed
+                                        }
+
+                                    </td>
+                                </tr>
+                            }
+                        }*@
                 </tbody>
             </table>
         </div>
@@ -244,7 +245,7 @@
     <div class="row">
         <div class="col-md">
             <div class="container">
-                <form method="post">
+                <form method="post" id="ContactForm">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row">
                         <div class="col-xl">
@@ -291,13 +292,14 @@
 
                         </div>
                         <div class="col-xl-4 col-lg-8">
-                            <input type="hidden" asp-for="Contact.Outlet" class="form-control" />
+                            <input type="hidden" name="Contact.OutletID" value="@Model.Outlet.OutletID" />
                             <button type="submit" class="btn btn-primary btn-block SendEnquiry SpacerAfter"><i class="fas fa-paper-plane"></i> Send Enquiry</button>
                         </div>
                         <div class="col-md d-md-block d-sm-none">
                         </div>
                     </div>
                 </form>
+                <input id="AntiForgeryTokenID" name="__RequestVerificationToken" type="hidden" value=" @Xsrf.GetAndStoreTokens(this.HttpContext).RequestToken" />
             </div>
         </div>
         <div class="col col-md">

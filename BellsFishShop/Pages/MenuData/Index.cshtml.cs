@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BellsFishShop.Data;
 using BellsFishShop.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BellsFishShop.Pages.MenuData
 {

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BellsFishShop.Data;
+using BellsFishShop.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +22,9 @@ namespace BellsFishShop.Pages
         public string MenuRef { get; set; }
         public bool? VegetarianOnly { get; set; }
         public bool? GlutenFreeOnly { get; set; }
+
+        public string CurrentUser { get; set; }
+        public bool IsAdmin { get; set; }
 
         public void OnGet(string menu, bool? vegetarian, bool? glutenFree, bool? kiosk, int screen)
         {
@@ -48,6 +53,9 @@ namespace BellsFishShop.Pages
             {
                 GlutenFreeOnly = glutenFree;
             }
+
+            CurrentUser = LoggedInUser.GetUserName(User);
+            IsAdmin = LoggedInUser.IsAdmin(User);
         }
     }
 }

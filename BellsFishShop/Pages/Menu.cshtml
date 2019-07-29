@@ -105,14 +105,20 @@
                 </div>
             </div>
         }
+
+        if (Model.IsAdmin == true)
+        {
+            <div class="alert alert-primary text-right Spacer" role="alert">
+                <button type="button" class="btn btn-primary"><i class="fas fa-plus-square"></i> Add New Menu Section</button>
+            </div>
+        }
     }
 </div>
 
-<input type="hidden" id="MenuRef" value="@Model.MenuRef" />
-<input type="hidden" id="VegetarianOnly" value="@Model.VegetarianOnly" />
-<input type="hidden" id="GlutenFreeOnly" value="@Model.GlutenFreeOnly" />
-<input type="hidden" id="KioskMode" value="@ViewData["KioskMode"]" />
-<input type="hidden" id="KioskScreen" value="@ViewData["Screen"]" />
+<!-- Modals -->
+<partial name="_ModalsPartial" model="Model" />
+
+<partial name="_InputIDsPartial" model="Model" />
 
 @section Stylesheets {
     <link rel="stylesheet" href="~/css/fish.css" asp-append-version="true" />

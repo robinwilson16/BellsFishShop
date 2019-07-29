@@ -66,6 +66,7 @@
 
                 </div>
                 <div class="col-md-3">
+                    <input type="hidden" name="Contact.Outlet" class="form-control" value="0" />
                     <button type="submit" class="btn btn-primary btn-block">Send Enquiry</button>
                 </div>
                 <div class="col-md d-md-block d-sm-none">
@@ -103,6 +104,9 @@
                         </p>
                         <p>
                             Please try to send your message again and if the error persists please <a href="anne@authoranne.co.uk?subject=Website Enquiry (Error 01)">click here</a> to send an email using your computer email programme instead or send an email to <a href="anne@authoranne.co.uk?subject=Website Enquiry (Error 01)">anne@authoranne.co.uk</a>
+                        </p>
+                        <p>
+                            @Html.ValidationSummary()
                         </p>
                     </div>
                 </div>

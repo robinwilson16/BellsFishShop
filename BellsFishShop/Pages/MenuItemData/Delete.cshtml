@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id:int?}"
 @model BellsFishShop.Pages.MenuItemData.DeleteModel
 
 @{
@@ -43,7 +43,7 @@
             @Html.DisplayFor(model => model.MenuItem.MenuCategory.Title)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="MenuItem.MenuItemID" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |

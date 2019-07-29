@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BellsFishShop.Data;
 using BellsFishShop.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BellsFishShop.Pages.OutletData
 {
+    [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
         private readonly BellsFishShop.Data.ApplicationDbContext _context;

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using BellsFishShop.Data;
 using BellsFishShop.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BellsFishShop.Pages.OutletData
 {
+    [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
         private readonly BellsFishShop.Data.ApplicationDbContext _context;

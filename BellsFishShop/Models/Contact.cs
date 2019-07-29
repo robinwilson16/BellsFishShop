@@ -11,9 +11,8 @@ namespace BellsFishShop.Models
         public int ContactID { get; set; }
 
         [Display(Name = "Outlet*", Prompt = "The outlet where the contact form is being displayed")]
-        [StringLength(100)]
-        [Required(ErrorMessage = "Please enter the name of the outlet")]
-        public string Outlet { get; set; }
+        [Required(ErrorMessage = "Please select the outlet")]
+        public int OutletID { get; set; }
 
         [Display(Name = "Name*", Prompt = "Name*")]
         [StringLength(100)]
@@ -33,7 +32,7 @@ namespace BellsFishShop.Models
         public string Telephone { get; set; }
 
         [Display(Name = "Enquiry*", Prompt = "Your Message...")]
-        [StringLength(20)]
+        [StringLength(500)]
         [Required(ErrorMessage = "Please enter your question or comments")]
         public string Enquiry { get; set; }
     }

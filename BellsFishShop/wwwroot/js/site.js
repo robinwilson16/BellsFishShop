@@ -58,3 +58,124 @@ function animateNavbarIcon() {
         duration: 500
     }, 'linear');
 }
+
+var SendEnquiryButtons = document.querySelectorAll('.SendEnquiry');
+Array.from(SendEnquiryButtons).forEach(button => {
+    button.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        let antiForgeryTokenID = document.querySelector("#AntiForgeryTokenID").value;
+        doContactForm(antiForgeryTokenID);
+    });
+});
+
+function doContactForm(antiForgeryTokenID) {
+    return new Promise(resolve => {
+        let contactURL = "";
+
+        contactURL = `/Contact`;
+
+        $.ajax({
+            type: "POST",
+            url: contactURL,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("RequestVerificationToken", antiForgeryTokenID);
+            },
+            data: $("#ContactForm").serialize(),
+            //data: {
+            //    'Contact.Name': "robin",
+            //    'Contact.Email': "robinwilson@rwsbetas.com",
+            //    'Contact.Telephone': "07732439335",
+            //    'Contact.Enquiry': "Test",
+            //    '__RequestVerificationToken': antiForgeryTokenID
+            //},
+            success: function (data) {
+                //var audio = new Audio("/sounds/confirm.wav");
+                //audio.play();
+                let result = $(data).find(".alert");
+                let isSuccess = result.hasClass("alert-success");
+
+                let ContactForm = document.querySelector("#ContactForm");
+                let msg = document.createElement('div');
+
+                if (isSuccess === true) {
+                    msg.setAttribute("class", "alert alert-success");
+                }
+                else {
+                    msg.setAttribute("class", "alert alert-danger");
+                }
+                
+                msg.setAttribute("role", "alert");
+                msg.innerHTML = result.html();
+
+                ContactForm.parentNode.insertBefore(msg, ContactForm.nextSibling);
+
+                console.log(`Message sent successfully`);
+                resolve(1);
+            },
+            error: function (error) {
+                doCrashModal(error);
+                console.log(`Error occurred: "${error}"`);
+                resolve(0);
+            }
+        });
+    });
+}
+
+$("#MenuModal").on("shown.bs.modal", function () {
+    let menuCategoryID = $("#MenuCategoryID").val();
+    let dataToLoad = `/MenuCategoryData/Edit/${menuCategoryID}`;
+
+    $.get(dataToLoad, function (data) {
+
+    })
+        .then(data => {
+            let formData = $(data).find("#MenuCategoryForm");
+            $("#MenuDetails").html(formData);
+            console.log(dataToLoad + " Loaded");
+        })
+        .fail(function () {
+            let title = `Error Loading Menu Category Form`;
+            let content = `The menu category form returned a server error and could not be loaded`;
+
+            doErrorModal(title, content);
+        });
+
+    dataToLoad = `/MenuItemData/${menuCategoryID}`;
+
+    $.get(dataToLoad, function (data) {
+
+    })
+        .then(data => {
+            let formData = $(data).find("#MenuItemList");
+            $("#MenuItems").html(formData);
+            console.log(dataToLoad + " Loaded");
+            menuItemLoadComplete();
+        })
+        .fail(function () {
+            let title = `Error Loading Menu Category Form`;
+            let content = `The menu category form returned a server error and could not be loaded`;
+
+            doErrorModal(title, content);
+        });
+});
+
+$("#MenuItemModal").on("shown.bs.modal", function () {
+    let menuItemID = $("#MenuItemID").val();
+    let dataToLoad = `/MenuItemData/Edit/${menuItemID}`;
+
+    $.get(dataToLoad, function (data) {
+
+    })
+        .then(data => {
+            let formData = $(data).find("#MenuItemForm");
+            $("#MenuItemDetails").html(formData);
+            console.log(dataToLoad + " Loaded");
+        })
+        .fail(function () {
+            let title = `Error Loading Menu Item Form`;
+            let content = `The menu item form returned a server error and could not be loaded`;
+
+            doErrorModal(title, content);
+        });
+});

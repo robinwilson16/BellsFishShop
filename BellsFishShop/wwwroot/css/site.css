@@ -1,4 +1,10 @@
-﻿@font-face {
+﻿/*Stop modals from expanding past screen height*/
+.modal-body {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+@font-face {
     font-family: 'vegetarian';
     src: url('/fonts/vegetarian.eot?53ylxw');
     src: url('/fonts/vegetarian.eot?#iefix53ylxw') format('embedded-opentype'), 
@@ -73,6 +79,12 @@
 .glutenfreeicon {
     font-family: "glutenfree";
     color: #ffb726;
+}
+
+.LoadingArea {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    font-size: 3em;
 }
 
 .bd-callout {

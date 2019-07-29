@@ -65,6 +65,7 @@ function getMenuData() {
 function loadMenu(data) {
     //First and only in array of menus - would allow drinks menu to be on same page
     var menuData = data.menuData[0];
+    let isAdmin = $("#IsAdmin").val();
     let kioskScreen = $("#KioskScreen").val();
 
     try {
@@ -100,7 +101,16 @@ function loadMenu(data) {
                             ${category.title}
                             ${catTitleExtra}
                             ${catDescription}
-                        </h3>
+                        </h3>`;
+
+                if (isAdmin === "True" && kioskScreen <= 0) {
+                    htmlData += `
+                        <div class="alert alert-primary text-right" role="alert">
+                            <button type="button" class="btn btn-primary EditMenu" data-toggle="modal" data-target="#MenuModal" data-id="${category.menuCategoryID}"><i class="fas fa-edit"></i> Edit...</button>
+                        </div>`;
+                }
+                
+                htmlData += `
                         <table class="table table-striped">
                             <tbody>`;
 
@@ -141,7 +151,7 @@ function loadMenu(data) {
         }
 
         $("#MenuData").html(htmlData);
-
+        menuLoadComplete();
     }
     catch (e) {
         let title = `Error Displaying Menu Data`;
@@ -149,6 +159,22 @@ function loadMenu(data) {
 
         doErrorModal(title, content);
     }
+}
+
+function menuLoadComplete() {
+    $(".EditMenu").click(function (event) {
+        let menuCategoryID = $(this).attr("data-id");
+
+        $("#MenuCategoryID").val(menuCategoryID);
+    });
+}
+
+function menuItemLoadComplete() {
+    $(".EditMenuItem").click(function (event) {
+        let menuItemID = $(this).attr("data-id");
+        alert(menuItemID);
+        $("#MenuItemID").val(menuItemID);
+    });
 }
 
 $(".SearchMenu").keyup(function (event) {
