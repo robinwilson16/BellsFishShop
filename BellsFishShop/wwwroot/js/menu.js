@@ -172,7 +172,6 @@ function menuLoadComplete() {
 function menuItemLoadComplete() {
     $(".EditMenuItem").click(function (event) {
         let menuItemID = $(this).attr("data-id");
-        alert(menuItemID);
         $("#MenuItemID").val(menuItemID);
     });
 }

@@ -124,6 +124,12 @@ function doContactForm(antiForgeryTokenID) {
 
 $("#MenuModal").on("shown.bs.modal", function () {
     let menuCategoryID = $("#MenuCategoryID").val();
+    
+    loadMenuForm(menuCategoryID);
+    loadMenuItemList(menuCategoryID);
+});
+
+function loadMenuForm(menuCategoryID) {
     let dataToLoad = `/MenuCategoryData/Edit/${menuCategoryID}`;
 
     $.get(dataToLoad, function (data) {
@@ -140,7 +146,9 @@ $("#MenuModal").on("shown.bs.modal", function () {
 
             doErrorModal(title, content);
         });
+}
 
+function loadMenuItemList(menuCategoryID) {
     dataToLoad = `/MenuItemData/${menuCategoryID}`;
 
     $.get(dataToLoad, function (data) {
@@ -158,10 +166,14 @@ $("#MenuModal").on("shown.bs.modal", function () {
 
             doErrorModal(title, content);
         });
-});
+}
 
 $("#MenuItemModal").on("shown.bs.modal", function () {
     let menuItemID = $("#MenuItemID").val();
+    loadMenuItemForm(menuItemID);
+});
+
+function loadMenuItemForm(menuItemID) {
     let dataToLoad = `/MenuItemData/Edit/${menuItemID}`;
 
     $.get(dataToLoad, function (data) {
@@ -178,4 +190,16 @@ $("#MenuItemModal").on("shown.bs.modal", function () {
 
             doErrorModal(title, content);
         });
+}
+
+$("#MenuModal").on("hidden.bs.modal", function () {
+    $("#MenuTabs a:first").tab("show");
+    let loadingAnim = $("#LoadingHTML").html();
+    $("#MenuDetails").html(loadingAnim);
+    $("#MenuItems").html(loadingAnim);
+});
+
+$("#MenuItemModal").on("hidden.bs.modal", function () {
+    let loadingAnim = $("#LoadingHTML").html();
+    $("#MenuItemDetails").html(loadingAnim);
 });
