@@ -109,7 +109,7 @@
         if (Model.IsAdmin == true)
         {
             <div class="alert alert-primary text-right Spacer" role="alert">
-                <button type="button" class="btn btn-primary"><i class="fas fa-plus-square"></i> Add New Menu Section</button>
+                <button type="button" class="btn btn-primary EditMenu" data-toggle="modal" data-target="#MenuCategoryModal" data-id="0"><i class="fas fa-plus-square"></i> Add New Menu Section</button>
             </div>
         }
     }
@@ -137,4 +137,6 @@
     {
         <script src="~/js/menuKiosk.js" asp-append-version="true"></script>
     }
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

@@ -122,14 +122,14 @@ function doContactForm(antiForgeryTokenID) {
     });
 }
 
-$("#MenuModal").on("shown.bs.modal", function () {
+$("#MenuCategoryModal").on("shown.bs.modal", function () {
     let menuCategoryID = $("#MenuCategoryID").val();
     
-    loadMenuForm(menuCategoryID);
+    loadMenuCategoryForm(menuCategoryID);
     loadMenuItemList(menuCategoryID);
 });
 
-function loadMenuForm(menuCategoryID) {
+function loadMenuCategoryForm(menuCategoryID) {
     let dataToLoad = `/MenuCategoryData/Edit/${menuCategoryID}`;
 
     $.get(dataToLoad, function (data) {
@@ -139,6 +139,7 @@ function loadMenuForm(menuCategoryID) {
             let formData = $(data).find("#MenuCategoryForm");
             $("#MenuDetails").html(formData);
             console.log(dataToLoad + " Loaded");
+            menuCategoryLoadComplete(menuCategoryID, "MenuCategoryData", "MenuCategoryModal");
         })
         .fail(function () {
             let title = `Error Loading Menu Category Form`;
@@ -158,11 +159,11 @@ function loadMenuItemList(menuCategoryID) {
             let formData = $(data).find("#MenuItemList");
             $("#MenuItems").html(formData);
             console.log(dataToLoad + " Loaded");
-            menuItemLoadComplete();
+            menuItemListLoadComplete(menuCategoryID, "MenuItemData", "MenuItemModal");
         })
         .fail(function () {
-            let title = `Error Loading Menu Category Form`;
-            let content = `The menu category form returned a server error and could not be loaded`;
+            let title = `Error Loading Menu Category Items`;
+            let content = `The menu category items list returned a server error and could not be loaded`;
 
             doErrorModal(title, content);
         });
@@ -183,6 +184,7 @@ function loadMenuItemForm(menuItemID) {
             let formData = $(data).find("#MenuItemForm");
             $("#MenuItemDetails").html(formData);
             console.log(dataToLoad + " Loaded");
+            menuItemLoadComplete(menuItemID, "MenuItemData", "MenuItemModal");
         })
         .fail(function () {
             let title = `Error Loading Menu Item Form`;
@@ -192,7 +194,7 @@ function loadMenuItemForm(menuItemID) {
         });
 }
 
-$("#MenuModal").on("hidden.bs.modal", function () {
+$("#MenuCategoryModal").on("hidden.bs.modal", function () {
     $("#MenuTabs a:first").tab("show");
     let loadingAnim = $("#LoadingHTML").html();
     $("#MenuDetails").html(loadingAnim);
@@ -203,3 +205,4 @@ $("#MenuItemModal").on("hidden.bs.modal", function () {
     let loadingAnim = $("#LoadingHTML").html();
     $("#MenuItemDetails").html(loadingAnim);
 });
+

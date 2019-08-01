@@ -106,7 +106,7 @@ function loadMenu(data) {
                 if (isAdmin === "True" && kioskScreen <= 0) {
                     htmlData += `
                         <div class="alert alert-primary text-right" role="alert">
-                            <button type="button" class="btn btn-primary EditMenu" data-toggle="modal" data-target="#MenuModal" data-id="${category.menuCategoryID}"><i class="fas fa-edit"></i> Edit...</button>
+                            <button type="button" class="btn btn-primary EditMenu" data-toggle="modal" data-target="#MenuCategoryModal" data-id="${category.menuCategoryID}"><i class="fas fa-edit"></i> Edit...</button>
                         </div>`;
                 }
                 
@@ -169,10 +169,115 @@ function menuLoadComplete() {
     });
 }
 
-function menuItemLoadComplete() {
+function menuCategoryLoadComplete(objectID, relativeURL, modelToClose) {
+    attachSubmitInputForm("MenuCategoryForm", objectID, relativeURL, "MenuCategoryModal");
+}
+
+function menuItemListLoadComplete(objectID, relativeURL, modelToClose) {
     $(".EditMenuItem").click(function (event) {
         let menuItemID = $(this).attr("data-id");
         $("#MenuItemID").val(menuItemID);
+    });
+}
+
+function menuItemLoadComplete(objectID, relativeURL, modelToClose) {
+    attachSubmitInputForm("MenuItemForm", objectID, relativeURL, "MenuItemModal");
+}
+
+
+$(".SaveMenuCategoryButton").click(function (event) {
+    checkApplyOrOkClicked($(this).text());
+    $("#MenuCategoryForm form").submit();
+});
+
+$(".SaveMenuItemButton").click(function (event) {
+    checkApplyOrOkClicked($(this).text());
+    $("#MenuItemForm form").submit();
+});
+
+function checkApplyOrOkClicked(button) {
+    if (button.includes("OK")) {
+        $("#CloseFormOnSubmit").val("Y");
+    }
+    else {
+        $("#CloseFormOnSubmit").val("N");
+    }
+}
+
+function attachSubmitInputForm(formToSubmit, objectID, relativeURL, modelToClose) {
+    let form = $("#" + formToSubmit + " form");
+    form.removeData('validator');
+    form.removeData('unobtrusiveValidation');
+    $.validator.unobtrusive.parse(form);
+
+    form.submit(function (event) {
+        event.preventDefault();
+
+        //If existing item then update
+        if (objectID.length > 0) {
+            //If no unobtrusive validation errors
+            if (form.valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: "/" + relativeURL + "/Edit/" + objectID,
+                    data: form.serialize(),
+                    success: function (data) {
+                        if ($("#CloseFormOnSubmit").val() === "Y") {
+                            $("#" + modelToClose).modal("hide");
+                        }
+                        console.log("Object " + objectID + " Updated: " + dataToLoad);
+                        var audio = new Audio("/sounds/confirm.wav");
+                        audio.play();
+                        //Refresh screen
+                    },
+                    error: function (error) {
+                        doCrashModal(error);
+                    }
+                });
+            }
+        }
+        else {
+            //If no unobtrusive validation errors
+            if (form.valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: "/" + relativeURL + "/Create",
+                    data: form.serialize(),
+                    success: function (data) {
+                        let hasClosedModal = false;
+                        if (closeFormOnSubmit === "Y") {
+                            hasClosedModal = true;
+                            $("#" + modelToClose).modal("hide");
+                        }
+                        console.log("New Object Created: " + dataToLoad);
+                        var audio = new Audio("/sounds/confirm.wav");
+                        audio.play();
+
+                        //Now object created must switch to edit mode
+                        if (!hasClosedModal) {
+                            $("#" + objectIDField).val(data.objectID);
+                            $("#" + modelToClose).trigger("shown.bs.modal");
+                        }
+
+                        loadList(
+                            loadListIntoDivID,
+                            relativeURL,
+                            "Index",
+                            parentObjectID,
+                            listToRefresh,
+                            listQueryParams,
+                            listButtonClass,
+                            listSortCol,
+                            listSortOrder,
+                            objectIDField
+                        );
+                    },
+                    error: function (error) {
+                        doCrashModal(error);
+                    }
+                });
+            }
+        }
     });
 }
 
