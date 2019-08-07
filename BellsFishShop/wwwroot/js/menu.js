@@ -1,4 +1,7 @@
-﻿getMenuData();
+﻿//On load
+getMenuData();
+showFishAnimation();
+showSustainabilityLink();
 
 //Format numbers to currency
 var currency = new Intl.NumberFormat('en-GB', {
@@ -23,7 +26,14 @@ function showFishAnimation() {
     }, 16000);
 }
 
-showFishAnimation();
+function showSustainabilityLink() {
+    let sustainabilityLink = $("#SustainabilityPolicyPopup");
+    sustainabilityLink.addClass("show");
+    setTimeout(function () {
+        //sustainabilityLink.removeClass("show");
+        sustainabilityLink.addClass("hide");
+    }, 10000);
+}
 
 function textReplacements(txt) {
     txt = txt.replace('(V)', '<span class="veg-vegetarian"></span>');

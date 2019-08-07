@@ -6,6 +6,10 @@
 
 <partial name="Shared/_FishPartial" />
 
+<div id="BellsLogoLargeAnimation">
+    <div class="BellsLogoLarge"></div>
+</div>
+
 @if ((bool?)ViewData["KioskMode"] != true)
 {
     <div id="CarouselMenuPage">
@@ -114,6 +118,13 @@
         }
     }
 </div>
+
+@if ((bool?)ViewData["KioskMode"] != true)
+{
+    <div id="SustainabilityPolicyPopup">
+        <a href="/Sustainability"><i class="fas fa-fish"></i> View Our Fish Sustainability Policy</a>
+    </div>
+}
 
 <!-- Modals -->
 <partial name="_ModalsPartial" model="Model" />

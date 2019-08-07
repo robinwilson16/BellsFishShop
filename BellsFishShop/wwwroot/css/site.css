@@ -45,10 +45,7 @@
 @font-face {
     font-family: 'glutenfree';
     src: url('/fonts/glutenfree.eot');
-    src: url('/fonts/glutenfree.eot') format('embedded-opentype'), 
-        url('/fonts/glutenfree.woff') format('woff'), 
-        url('/fonts/glutenfree.ttf') format('truetype'), 
-        url('/fonts/glutenfree.svg#glutenfree') format('svg');
+    src: url('/fonts/glutenfree.eot') format('embedded-opentype'), url('/fonts/glutenfree.woff') format('woff'), url('/fonts/glutenfree.ttf') format('truetype'), url('/fonts/glutenfree.svg#glutenfree') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -322,7 +319,6 @@ textarea.form-control {
 
 .NavbarLogoPreAnim {
     visibility: hidden;
-    visibility: hidden;
     opacity: 0;
     transition: visibility 0s, opacity 0.5s linear, margin 0.5s linear;
     margin-left: -50px;
@@ -338,6 +334,90 @@ textarea.form-control {
     opacity: 1;
     margin-left: 0px;
     margin-right: 0px;
+}
+
+#SustainabilityPolicyPopup {
+    visibility: hidden;
+    background-color: rgba(0,0,0,0.75);
+    color: #ffffff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    font-size: 17px;
+}
+
+#SustainabilityPolicyPopup a:link,
+#SustainabilityPolicyPopup a:active,
+#SustainabilityPolicyPopup a:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#SustainabilityPolicyPopup a:hover {
+    text-decoration: underline;
+}
+
+#SustainabilityPolicyPopup.show {
+    visibility: visible;
+    /*animation: fadein 0.5s, fadeout 0.5s 2.5s;*/
+    animation: fadeinPopup 0.5s;
+}
+
+#SustainabilityPolicyPopup.hide {
+    /*animation: fadein 0.5s, fadeout 0.5s 2.5s;*/
+    animation: fadeoutPopup 0.5s 2.5s forwards;
+}
+
+@keyframes fadeinPopup {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadeoutPopup {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+#BellsLogoLargeAnimation {
+    width: 750px;
+    height: 750px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#BellsLogoLargeAnimation .BellsLogoLarge {
+    background: url(/images/BellsLogoBlackLrg.png) no-repeat;
+    width: 750px;
+    height: 750px;
+    transform: rotate(270deg);
+    visibility: hidden;
+}
+
+
+#BellsLogoLargeAnimation .BellsLogoLarge.show {
+    visibility: visible;
+    animation: rotateShow 0.5s forwards;
+}
+
+#BellsLogoLargeAnimation .BellsLogoLarge.hide {
+    animation: rotateHide 0.5s forwards;
+}
+
+@keyframes rotateShow {
+    from {transform: rotate(-90deg); opacity: 0;}
+    to {transform: rotate(0deg); opacity: 1;}
+}
+
+@keyframes rotateHide {
+  from {transform: rotate(0deg); opacity: 1;}
+  to {transform: rotate(90deg); opacity: 0;}
 }
 
 nav .SocialMediaLinks {
