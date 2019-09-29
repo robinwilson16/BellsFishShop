@@ -83,7 +83,7 @@ namespace BellsFishShop
 
             app.UseMvc();
 
-            CreateUsers.Initialize(context, userManager, roleManager, configuration).Wait();// seed here
+            //CreateUsers.Initialize(context, userManager, roleManager, configuration).Wait();// seed here
         }
     }
 }
