@@ -14,6 +14,7 @@ using BellsFishShop.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using BellsFishShop.Models;
+using Microsoft.Extensions.Hosting;
 
 namespace BellsFishShop
 {
@@ -47,16 +48,16 @@ namespace BellsFishShop
             services.AddIdentity<ApplicationUser, ApplicationRole>(
                 options => options.Stores.MaxLengthForKeys = 128)
                 .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
+                .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(
-            IApplicationBuilder app, 
-            IHostingEnvironment env,
+            IApplicationBuilder app,
+            IWebHostEnvironment env,
             ApplicationDbContext context,
             RoleManager<ApplicationRole> roleManager,
             UserManager<ApplicationUser> userManager,
@@ -77,11 +78,14 @@ namespace BellsFishShop
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
 
+            app.UseRouting();
             app.UseAuthentication();
-
-            app.UseMvc();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+            });
 
             //CreateUsers.Initialize(context, userManager, roleManager, configuration).Wait();// seed here
         }
