@@ -42,7 +42,9 @@
     <link href="//fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
     <link href="//fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet" />
     @*<link href="//fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet" />*@
+    <link href="https://fonts.googleapis.com/css?family=Damion&display=swap" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Merienda&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merienda+One&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="~/css/slider.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -86,12 +88,13 @@
     <partial name="_LoginPartial" />
 
     <nav class="navbar navbar-expand-lg navbar-toggleable-lg navbar-dark bg-dark sticky-top">
-        <div class="container-fluid">
+        <div class="container-fluid navbar-nav-small">
             <a class="navbar-brand" asp-area="" asp-page="/Index"><div id="NavbarLogo" class="NavbarLogoPreAnim"><img src="~/images/BellsLogoNavbar.png" alt="Bells Fish Shop" /></div></a>
+            <a class="navbar-brand NavbarSpacer"></a>
             <a class="nav-link text-light d-lg-none" href="mailto:bells@bellsfishshop.co.uk?subject=Website%20Enquiry" title="Email Us" target="_blank" rel="noopener"><i class="fas fa-envelope"></i></a>
             <a class="nav-link text-light d-lg-none" href="//facebook.com/bellsfishandchips/" title="Visit our Facebook page" target="_blank" rel="noopener"><i class="fab fa-facebook"></i></a>
             <a class="nav-link text-light d-lg-none" href="//twitter.com/BellsFishShop" title="Visit our Twitter page" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
-            <a class="nav-link text-light d-lg-none" href="//instagram.com/bellsfishandchips/" title="Visit our Instagram page" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+            <a class="nav-link text-light d-none d-sm-block d-lg-none" href="//instagram.com/bellsfishandchips/" title="Visit our Instagram page" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -116,7 +119,31 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Index"><i class="fas fa-home"></i> Home</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown d-none d-lg-block d-xl-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="OutletsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-utensils"></i> Outlets
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="OutletsDropdown">
+                            <span class="navbar-text">
+                                Restaurants
+                            </span>
+                            <a class="dropdown-item" href="~/Outlet/Framwellgate"><i class="fas fa-utensils"></i> Framwellgate Moor</a>
+                            <a class="dropdown-item" href="~/Outlet/MarketPlace"><i class="fas fa-utensils"></i> Market Place</a>
+                            <a class="dropdown-item" href="~/Outlet/TeamValley"><i class="fas fa-utensils"></i> Team Valley</a>
+                            <div class="dropdown-divider"></div>
+                            <span class="navbar-text">
+                                Takaways
+                            </span>
+                            <a class="dropdown-item Takeaway" href="~/Outlet/Framwellgate"><i class="fas fa-shopping-bag"></i> Framwellgate Moor</a>
+                            <a class="dropdown-item Takeaway" href="~/Outlet/Gilesgate"><i class="fas fa-shopping-bag"></i> Gilesgate</a>
+                            <a class="dropdown-item Takeaway" href="~/Outlet/Marketplace"><i class="fas fa-shopping-bag"></i> Market Place</a>
+                            <a class="dropdown-item Takeaway" href="~/Outlet/TeamValley"><i class="fas fa-shopping-bag"></i> Team Valley</a>
+                            <a class="dropdown-item Takeaway" href="~/Outlet/Washington"><i class="fas fa-shopping-bag"></i> Washington</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" asp-area="" asp-page="/Sustainability"><i class="fas fa-fish"></i> Sustainability</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown d-lg-none d-xl-block">
                         <a class="nav-link dropdown-toggle" href="#" id="RestaurantsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-utensils"></i> Restaurants
                         </a>
@@ -128,7 +155,7 @@
                             <a class="dropdown-item" asp-area="" asp-page="/Sustainability"><i class="fas fa-fish"></i> Sustainability</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown d-lg-none d-xl-block">
                         <a class="nav-link dropdown-toggle Takeaway" href="#" id="HelpDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-shopping-bag"></i> Takeaways
                         </a>
@@ -142,10 +169,19 @@
                             <a class="dropdown-item" asp-area="" asp-page="/Sustainability"><i class="fas fa-fish"></i> Sustainability</a>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item dropdown d-none d-lg-block d-xl-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="MenusDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-list"></i> Menus
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="MenusDropdown">
+                            <a class="dropdown-item" href="~/Menu/Food"><i class="fas fa-list"></i> Food Menu</a>
+                            <a class="dropdown-item" href="~/Menu/Drinks"><i class="fas fa-beer"></i> Drinks Menu</a>
+                        </div>
+                    </li>
+                    <li class="nav-item d-lg-none d-xl-block">
                         <a class="nav-link text-dark" href="~/Menu/Food"><i class="fas fa-list"></i> Food Menu</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item d-lg-none d-xl-block">
                         <a class="nav-link text-dark" href="~/Menu/Drinks"><i class="fas fa-beer"></i> Drinks Menu</a>
                     </li>
                     <li class="nav-item">
