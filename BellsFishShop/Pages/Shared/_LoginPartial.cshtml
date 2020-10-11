@@ -6,7 +6,7 @@
 @*<ul class="navbar-nav">*@
 @if (SignInManager.IsSignedIn(User))
 {
-    <div class="alert alert-warning" role="alert">
+    <div class="alert alert-dark" role="alert">
         <div class="row">
             <div class="col-md align-self-center">
                 <i class="fas fa-user"></i> Logged in as
@@ -17,7 +17,7 @@
             </div>
             <div class="col-md text-right">
                 <form class="form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                    <button type="submit" class="btn btn-warning"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    <button type="submit" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Logout</button>
                 </form>
             </div>
         </div>

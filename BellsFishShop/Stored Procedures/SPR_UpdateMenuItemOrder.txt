@@ -1,0 +1,38 @@
+CREATE PROCEDURE [dbo].[SPR_UpdateMenuItemOrder]
+	@MenuCategoryID INT,
+    @RowsOrderSQL NVARCHAR(MAX)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+	--DECLARE @MenuCategoryID INT = 4
+	--DECLARE @RowsOrderSQL NVARCHAR(MAX) = '(34, 1), (33, 2), (32, 3), (35, 4), (36, 5), (37, 6), (38, 7), (39, 8)'
+
+
+	DECLARE @SQLString NVARCHAR(MAX);
+	DECLARE @SQLParams NVARCHAR(MAX);
+
+	SET @SQLString = N'
+		UPDATE MI
+		SET
+			MI.SortOrder = UP.SortOrder
+		FROM MenuItem MI
+		INNER JOIN (
+			VALUES 
+			' + @RowsOrderSQL + '
+		) UP ( [MenuItemID], [SortOrder] )
+			ON UP.MenuItemID = MI.MenuItemID
+		WHERE
+			MI.MenuCategoryID = @MenuCategoryID
+			AND MI.SortOrder <> UP.SortOrder';
+
+	SET @SQLParams = N'
+		@MenuCategoryID INT,
+		@RowsOrderSQL NVARCHAR(MAX)';
+
+	EXECUTE sp_executesql 
+		@SQLString, 
+		@SQLParams, 
+		@MenuCategoryID = @MenuCategoryID,
+		@RowsOrderSQL = @RowsOrderSQL;
+END

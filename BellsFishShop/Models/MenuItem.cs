@@ -31,6 +31,8 @@ namespace BellsFishShop.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
+        public int SortOrder { get; set; }
+
         [JsonIgnore]
         public MenuCategory MenuCategory { get; set; }
     }

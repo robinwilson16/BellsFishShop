@@ -1,11 +1,9 @@
 ﻿@page
 @model BellsFishShop.Pages.AboutModel
 
-@{
-    ViewData["Title"] = "About";
-}
+@{ ViewData["Title"] = "About"; }
 
-<div class="container MainContent Spacer">
+<div class="container">
     <div class="row">
         <div class="col">
             <div class="container">
@@ -15,134 +13,22 @@
                             <i class="fas fa-users"></i> Family Business
                         </h3>
                         <p>
-                            Bells is a successful family run business feeding the Durham and Washington area from its five outlets providing a mix of restaurant and take away facilities.
+                            ‘Bells Fish and Chips’ is a family run business led by qualified Chef Graham Kennedy. Bells started life as a small fish shop in Marshall Terrace, Gilesgate. Under the leadership and guidance of Graham it has grown to its current five outlet status, offering both sit in and takeaway services.
                         </p>
                         <p>
-                            Recently in 2019 Bells opened its third restaurant on Finchale Road, Framwellgate Moor, making a total of five outlets, following a £1.5m conversion of the former GMD car showroom.
+                            As Graham says...
                         </p>
                         <p>
-                            The new 8,500sq ft premises is a far cry from the humble ‘chippy’ of yesteryear.
+                            <i class="fas fa-quote-left"></i> At Bells we never use either the 'T word' (<strong>Traditional</strong>) or the 'Q word' (<strong>Quality</strong>). Our fundamental mantra is that these things are given. Of course, fried fish and chips is a traditional British meal and of course top quality should be expected.
                         </p>
                         <p>
-                            The plush, well-appointed, premises features a 90-seat restaurant, complete with quirky décor, including an ice-cream van serving area, a bar and a takeaway.
+                            At Bells we try to offer a first-class dining experience within each of our restaurants. We have invested a lot in each of our outlets. Our aim is to offer an enjoyable dining experience for all ages in lovely surroundings. Every one of our premises has a five-star hygiene rating and that is the way we want it to stay. <i class="fas fa-quote-right"></i>
                         </p>
-                        <p>
-                            Just months before this, the second restaurant opened in the newly established Team Valley Retail World with a similar decor to the Framewellgate restaurant.
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card">
-                            <div class="card-img">
-                                <a href="~/Outlet/Framwellgate">
-                                    <div class="Icons">
-                                        <i class="fas fa-utensils"></i> <i class="fas fa-shopping-bag"></i>
-                                    </div>
-                                    <img src="~/images/Framwellgate.jpg" class="card-img-top" alt="Framwellgate Restaurant and Takeaway" />
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Framwellgate Restaurant and Takeaway
-                                </h5>
-                                <p class="card-text">
-                                    Old Pit Lane, Framwellgate Moor. DH1 5RW
-                                </p>
-                                <a href="~/Outlet/Framwellgate" class="btn btn-primary btn-block btn-BellsDark"><i class="fas fa-fish"></i> Further Details</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card">
-                            <div class="card-img">
-                                <a href="~/Outlet/TeamValley">
-                                    <div class="Icons">
-                                        <i class="fas fa-utensils"></i> <i class="fas fa-shopping-bag"></i>
-                                    </div>
-                                    <img src="~/images/TeamValley.jpg" class="card-img-top" alt="Team Valley Restaurant and Takeaway" />
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Team Valley Restaurant and Takeaway
-                                </h5>
-                                <p class="card-text">
-                                    Unit 23, Team Valley Retail World, Gateshead. NE11 0BD
-                                </p>
-                                <a href="~/Outlet/TeamValley" class="btn btn-primary btn-block btn-BellsDark"><i class="fas fa-fish"></i> Further Details</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card">
-                            <div class="card-img">
-                                <a href="~/Outlet/MarketPlace">
-                                    <div class="Icons">
-                                        <i class="fas fa-utensils"></i> <i class="fas fa-shopping-bag"></i>
-                                    </div>
-                                    <img src="~/images/MarketPlace.jpg" class="card-img-top" alt="Market Place Restaurant and Takeaway" />
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Market Place Restaurant and Takeaway
-                                </h5>
-                                <p class="card-text">
-                                    11 Market Place, Durham.<br />DH1 3NE
-                                </p>
-                                <a href="~/Outlet/MarketPlace" class="btn btn-primary btn-block btn-BellsDark"><i class="fas fa-fish"></i> Further Details</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card">
-                            <div class="card-img">
-                                <a href="~/Outlet/Gilesgate">
-                                    <div class="Icons">
-                                        <i class="fas fa-shopping-bag"></i>
-                                    </div>
-                                    <img src="~/images/Gilesgate.jpg" class="card-img-top" alt="Gilesgate Takeaway" />
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Gilesgate Takeaway
-                                </h5>
-                                <p class="card-text">
-                                    36 Sunderland Road, Gilesgate, Durham. DH1 2LG
-                                </p>
-                                <a href="~/Outlet/Gilesgate" class="btn btn-primary btn-block btn-BellsDark"><i class="fas fa-fish"></i> Further Details</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card">
-                            <div class="card-img">
-                                <a href="~/Outlet/Washington">
-                                    <div class="Icons">
-                                        <i class="fas fa-shopping-bag"></i>
-                                    </div>
-                                    <img src="~/images/Washington.jpg" class="card-img-top" alt="Washington Takeaway" />
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Washington Takeaway
-                                </h5>
-                                <p class="card-text">
-                                    Unit 2, Craggs Road, Washington. NE38 8FB
-                                </p>
-                                <a href="~/Outlet/Washington" class="btn btn-primary btn-block btn-BellsDark"><i class="fas fa-fish"></i> Further Details</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div class="NavbarLogoTrigger"></div>

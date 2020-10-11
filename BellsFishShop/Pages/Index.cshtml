@@ -1,29 +1,36 @@
 ﻿@page
 @model IndexModel
-@{
-    ViewData["Title"] = "Home page";
-}
+@{ ViewData["Title"] = "Home page"; }
 
-<div class="container-fluid GreyContent">
+<div class="container-fluid Background1">
     <div class="row">
-        <div class="col-md">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md Highlight">
-                        <h3>
-                            Welcome to Bells Fish and Chips
-                        </h3>
+        <div class="container Spacer">
+            <div class="row">
+                <div class="col-md">
+                    <h1>
+                        Welcome to Bells
+                    </h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md">
+                    <p>
+                        At Bells we are proud to offer proper fish and chips. Our products are sourced only from sustainable fishing grounds, with our core product - the classic fish & chip meal - cooked in the old fashioned way, deep fried in best Beef Dripping.
+                    </p>
+                    <p>
+                        For those with special dietary needs, we are always very happy to help.
+                    </p>
+                    <p class="NavbarLogoTrigger">
+                        Our five outlets are in Durham City; Framwellgate Moor; Gilesgate; Teal Farm, Washington and Team Valley, Gateshead.  Wherever or however you choose to eat at Bells, there's a warm welcome and a lovely eating experience.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md">
+                    <div class="alert alert-primary text-center" role="alert">
+                        <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Site Under Development</h4>
                         <p>
-                            When Joe Bell started a Fish & Chip Shop in Marshall Terrace, Gilesgate, on the outskirts of Durham City many years ago, he certainly didn't envisage that by 2020 'Bells' would employ over a hundred staff in the region and operate from five high class outlets! Today, we at Bells offer proper fish and chips and a varied menu from three plush restaurants and five takeaways.
-                        </p>
-                        <p>
-                            Business growth of that sort only comes from two things: top class products and sheer hard work. Our products are sourced only from sustainable fishing grounds. Our core product - the classic British Fish and Chips - are fried in best Beef Dripping. The only way (ask Rick Stein!). Beat that. For those with special dietary needs, we are always very happy to help.
-                        </p>
-                        <p>
-                            We are located in Durham City, Framwellgate Moor, Teal Farm Washington and Team Valley. Wherever you choose to eat at Bells, there's a warm welcome awaits and a lovely eating experience.
-                        </p>
-                        <p>
-                            Please click to view our <a href="/Menu/Food" class="btn btn-primary btn-Bells"><i class="fas fa-fish"></i> Food Menu</a> or our <a href="/Menu/Drinks" class="btn btn-primary btn-Bells"><i class="fas fa-beer"></i> Drinks Menu</a>. For directions to our restaurants please select a restaurant/takeaway below.
+                            Please note, you may notice some missing sections whilst we work on improving the new website.
                         </p>
                     </div>
                 </div>
@@ -32,128 +39,91 @@
     </div>
 </div>
 
-<div class="container-fluid BlueContent">
+<div class="container-fluid Background2">
     <div class="row">
-        <div class="col-md">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md Spacer">
-                        <h3>
-                            Our Restaurants and Takeaways
-                        </h3>
-                    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md Spacer">
+                    <h3>
+                        Our Restaurants and Takeaways
+                    </h3>
                 </div>
             </div>
+        </div>
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-4">
-                        <div class="card">
-                            <div class="card-img">
-                                <a href="~/Outlet/Framwellgate">
-                                    <div class="Icons">
-                                        <i class="fas fa-utensils"></i> <i class="fas fa-shopping-bag"></i>
-                                    </div>
-                                    <img src="~/images/Framwellgate.jpg" class="card-img-top" alt="Framwellgate Restaurant and Takeaway" />
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Framwellgate Restaurant and Takeaway
-                                </h5>
-                                <p class="card-text">
-                                    Old Pit Lane, Framwellgate Moor. DH1 5RW
-                                </p>
-                                <a href="~/Outlet/Framwellgate" class="btn btn-primary btn-block btn-Bells"><i class="fas fa-fish"></i> Further Details</a>
-                            </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-2 col-lg-3 col-md-6 d-flex align-items-stretch">
+                    <div class="card">
+                        <div class="card-img">
+                            <a href="~/Outlet/Framwellgate">
+                                <img src="~/images/Framwellgate.jpg" class="card-img-top" alt="Framwellgate Restaurant and Takeaway" />
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <a href="~/Outlet/Framwellgate">Framwellgate Restaurant and Takeaway</a> 
+                            </h6>
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-lg-3 col-md-4">
-                        <div class="card">
-                            <div class="card-img">
-                                <a href="~/Outlet/TeamValley">
-                                    <div class="Icons">
-                                        <i class="fas fa-utensils"></i> <i class="fas fa-shopping-bag"></i>
-                                    </div>
-                                    <img src="~/images/TeamValley.jpg" class="card-img-top" alt="Team Valley Restaurant and Takeaway" />
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Team Valley Restaurant and Takeaway
-                                </h5>
-                                <p class="card-text">
-                                    Unit 23, Team Valley Retail World, Gateshead. NE11 0BD
-                                </p>
-                                <a href="~/Outlet/TeamValley" class="btn btn-primary btn-block btn-Bells"><i class="fas fa-fish"></i> Further Details</a>
-                            </div>
+                <div class="col-xl-2 col-lg-3 col-md-6 d-flex align-items-stretch">
+                    <div class="card">
+                        <div class="card-img">
+                            <a href="~/Outlet/TeamValley">
+                                <img src="~/images/TeamValley.jpg" class="card-img-top" alt="Team Valley Restaurant and Takeaway" />
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <a href="~/Outlet/TeamValley">Team Valley Restaurant and Takeaway</a>
+                            </h6>
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-lg-3 col-md-4">
-                        <div class="card">
-                            <div class="card-img">
-                                <a href="~/Outlet/MarketPlace">
-                                    <div class="Icons">
-                                        <i class="fas fa-utensils"></i> <i class="fas fa-shopping-bag"></i>
-                                    </div>
-                                    <img src="~/images/MarketPlace.jpg" class="card-img-top" alt="Market Place Restaurant and Takeaway" />
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Market Place Restaurant and Takeaway
-                                </h5>
-                                <p class="card-text">
-                                    11 Market Place, Durham.<br />DH1 3NE
-                                </p>
-                                <a href="~/Outlet/MarketPlace" class="btn btn-primary btn-block btn-Bells"><i class="fas fa-fish"></i> Further Details</a>
-                            </div>
+                <div class="col-xl-2 col-lg-3 col-md-6 d-flex align-items-stretch">
+                    <div class="card">
+                        <div class="card-img">
+                            <a href="~/Outlet/MarketPlace">
+                                <img src="~/images/MarketPlace.jpg" class="card-img-top" alt="Market Place Restaurant and Takeaway" />
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <a href="~/Outlet/MarketPlace">Market Place Restaurant and Takeaway</a>
+                            </h6>
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-lg-3 col-md-4">
-                        <div class="card">
-                            <div class="card-img">
-                                <a href="~/Outlet/Gilesgate">
-                                    <div class="Icons">
-                                        <i class="fas fa-shopping-bag"></i>
-                                    </div>
-                                    <img src="~/images/Gilesgate.jpg" class="card-img-top" alt="Gilesgate Takeaway" />
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Gilesgate<br />Takeaway
-                                </h5>
-                                <p class="card-text">
-                                    36 Sunderland Road, Gilesgate, Durham. DH1 2LG
-                                </p>
-                                <a href="~/Outlet/Gilesgate" class="btn btn-primary btn-block btn-Bells"><i class="fas fa-fish"></i> Further Details</a>
-                            </div>
+                <div class="col-xl-2 col-lg-3 col-md-6 d-flex align-items-stretch">
+                    <div class="card">
+                        <div class="card-img">
+                            <a href="~/Outlet/Gilesgate">
+                                <img src="~/images/Gilesgate.jpg" class="card-img-top" alt="Gilesgate Takeaway" />
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <a href="~/Outlet/Gilesgate">Gilesgate Takeaway</a>
+                            </h6>
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-lg-3 col-md-4">
-                        <div class="card">
-                            <div class="card-img">
-                                <a href="~/Outlet/Washington">
-                                    <div class="Icons">
-                                        <i class="fas fa-shopping-bag"></i>
-                                    </div>
-                                    <img src="~/images/Washington.jpg" class="card-img-top" alt="Washington Takeaway" />
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Washington Takeaway
-                                </h5>
-                                <p class="card-text">
-                                    Unit 2, Craggs Road, Washington. NE38 8FB
-                                </p>
-                                <a href="~/Outlet/Washington" class="btn btn-primary btn-block btn-Bells"><i class="fas fa-fish"></i> Further Details</a>
-                            </div>
+                <div class="col-xl-2 col-lg-3 col-md-6 d-flex align-items-stretch">
+                    <div class="card">
+                        <div class="card-img">
+                            <a href="~/Outlet/Washington">
+                                <img src="~/images/Washington.jpg" class="card-img-top" alt="Washington Takeaway" />
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <a href="~/Outlet/Washington">Washington Takeaway</a>
+                            </h6>
                         </div>
                     </div>
                 </div>
@@ -162,30 +132,32 @@
     </div>
 </div>
 
-<div class="container-fluid GreyContent">
+<div class="container-fluid SpacerAfter">
     <div class="row">
-        <div class="col-md">
-            <div class="container">
-                <div class="row Spacer">
-                    <div class="col-md">
-                        <h3>
-                            <i class="fas fa-fish"></i> Sustainable Fish
-                        </h3>
-                        <p>
-                            We are helping to protect Cod and Haddock by supporting a sustainable fish programme...
-                        </p>
-                        <a href="/Sustainability" class="btn btn-primary"><i class="fas fa-leaf"></i> Read More</a>
-                    </div>
-                    <div class="col-md">
-                        <h3>
-                            <i class="fas fa-palette"></i> Our Décor
-                        </h3>
-                        <p>
-                            Bells aims to be a cut above the rest, both in terms of the quality of our food as well as our décor.
-                            Our décor is therefore designed by Philip Watts Design, who also create the designs for companies such as Movotel, ibis, Greggs, Yo Sushi, and others.
-                        </p>
-                        <a href="https://www.philipwattsinteriors.com/interior-design.html" target="_blank" rel="noopener" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> See Their Work</a>
-                    </div>
+        <div class="container">
+            <div class="row Spacer">
+                <div class="col-md">
+                    <h3>
+                        <i class="fas fa-fish"></i> Sustainable Fish
+                    </h3>
+                    <p>
+                        We are helping to protect Cod and Haddock by supporting a sustainable fish programme...
+                    </p>
+                    <a href="/Sustainability" class="btn btn-primary btn-Bells"><i class="fas fa-leaf"></i> Read More</a>
+                </div>
+                <div class="col-md">
+                    <h3>
+                        <i class="fas fa-scroll"></i> Bells Mission
+                    </h3>
+                    <p>
+                        At Bells we constantly work to offer first class fish & chips in a first class environment.
+                    </p>
+                    <p>
+                        Our restaurants are designed by Philip Watts Design, using high class innovative materials and concepts.
+                    </p>
+                    <p>
+                        Nothing - relating either to the food we source, prepare and serve - or the fittings and fixtures in our premises, is too much trouble for our customers.
+                    </p>
                 </div>
             </div>
         </div>

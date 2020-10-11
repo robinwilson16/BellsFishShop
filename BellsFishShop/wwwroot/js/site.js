@@ -7,6 +7,11 @@
     });
 });
 
+$(document).on('click', '[data-toggle="lightbox"]', function (event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
+});
+
 //Make Twitter Feed Responsive 100% Height
 $(window).on('resize', function () {
     setTimeout(function () { changeFBPagePlugin(); }, 500);
@@ -25,55 +30,39 @@ changeFBPagePlugin = function () {
     }
 };
 
-function checkScroll() {
-    var startY = $('.navbar').height() * 2; //The point where the navbar changes in px
+// init controller
+var controller = new ScrollMagic.Controller({ globalSceneOptions: { duration: 2000 } });
 
-    if ($(window).scrollTop() > startY) {
-        $('.navbar').addClass("scrolled");
-    } else {
-        $('.navbar').removeClass("scrolled");
-    }
-}
+// build scene
+var scene1 = new ScrollMagic.Scene({
+    triggerElement: ".NavbarLogoTrigger",
+    duration: "100%"
+})
+    // trigger animation by adding a css class
+    .setClassToggle("#NavbarLogo", "NavbarLogoAnimate")
+    .on('start', function () {
+        //this.triggerElement()
+        animateNavbarIcon();
+    })
+    //.addIndicators({ name: "Navbar Logo" })
+    .addTo(controller);
 
-if ($('.navbar').length > 0) {
-    $(window).on("scroll load resize", function () {
-        checkScroll();
+function animateNavbarIcon() {
+    $('#NavbarLogo').css({
+        "borderSpacing": "0",
+        "transform": "rotate(-90deg)"
     });
+
+    $("#NavbarLogo").animate({
+        borderSpacing: 90
+    },
+    {
+        step: function (now, fx) {
+            $(this).css('transform', 'rotate(' + now + 'deg)');
+        },
+        duration: 500
+    }, 'linear');
 }
-
-//// init controller
-//var controller = new ScrollMagic.Controller({ globalSceneOptions: { duration: 2000 } });
-
-//// build scene
-//var scene1 = new ScrollMagic.Scene({
-//    triggerElement: ".NavbarLogoTrigger",
-//    duration: "100%"
-//})
-//    // trigger animation by adding a css class
-//    .setClassToggle("#NavbarLogo", "NavbarLogoAnimate")
-//    .on('start', function () {
-//        //this.triggerElement()
-//        animateNavbarIcon();
-//    })
-//    //.addIndicators({ name: "Navbar Logo" })
-//    .addTo(controller);
-
-//function animateNavbarIcon() {
-//    $('#NavbarLogo').css({
-//        "borderSpacing": "0",
-//        "transform": "rotate(-90deg)"
-//    });
-
-//    $("#NavbarLogo").animate({
-//        borderSpacing: 90
-//    },
-//    {
-//        step: function (now, fx) {
-//            $(this).css('transform', 'rotate(' + now + 'deg)');
-//        },
-//        duration: 500
-//    }, 'linear');
-//}
 
 var SendEnquiryButtons = document.querySelectorAll('.SendEnquiry');
 Array.from(SendEnquiryButtons).forEach(button => {

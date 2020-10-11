@@ -21,6 +21,8 @@ namespace BellsFishShop.Pages.MenuData
         }
 
         public IList<Menu> Menu { get;set; }
+        public IList<MenuCategory> MenuCategory { get; set; }
+        public IList<MenuItem> MenuItem { get; set; }
 
         public async Task OnGetAsync()
         {
@@ -29,10 +31,22 @@ namespace BellsFishShop.Pages.MenuData
 
         public async Task<IActionResult> OnGetJsonAsync(string menu)
         {
+            //Menu = await _context.Menu
+            //    .Include(c => c.MenuCategory)
+            //    .ThenInclude(c => c.MenuItem)
+            //    .Where(m => m.MenuRef == menu)
+            //    .ToListAsync();
+
             Menu = await _context.Menu
-                .Include(c => c.MenuCategory)
-                .ThenInclude(c => c.MenuItem)
                 .Where(m => m.MenuRef == menu)
+                .ToListAsync();
+
+            MenuCategory = await _context.MenuCategory
+                .OrderBy(c => c.SortOrder)
+                .ToListAsync();
+
+            MenuItem = await _context.MenuItem
+                .OrderBy(i => i.SortOrder)
                 .ToListAsync();
 
             var MenuData = new

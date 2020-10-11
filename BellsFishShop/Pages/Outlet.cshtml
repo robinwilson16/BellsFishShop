@@ -1,325 +1,260 @@
 ﻿@page "{outlet}"
 @model BellsFishShop.Pages.OutletModel
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
-@{
-    ViewData["Title"] = "Outlet";
-}
+@{ ViewData["Title"] = "Outlet"; }
 
-<div id="CarouselHomePage">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="~/images/@Model.Outlet.HeaderImage" alt="@Model.Outlet.Title" class="img-fluid" />
-            <div class="carousel-caption">
-                <div class="d-none d-md-block">
+<div class="NavbarLogoTrigger"></div>
+
+<div class="container-fluid Background2 SpacerAfter">
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                <div class="col-md Spacer">
+                    <h1>
+                        @Model.Outlet.Title
+                    </h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    @Html.Raw(Model.Outlet.Details)
+                </div>
+                <div class="col-md-4 text-center">
+                    <img src="~/images/@Model.Outlet.Photo2" alt="@Model.Outlet.Title" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid Spacer">
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                <div class="col-md">
+                    <h3>
+                        Contact Details
+                    </h3>
                     <div class="row">
-                        <div class="col-md">
-                            <h3 class="OutletName NavbarLogoTrigger">
-                                @Model.Outlet.Title
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col col-md text-left">
+                        <div class="col-lg SpacerAfter">
                             <h4>
                                 <i class="fas fa-home"></i> Address
                             </h4>
-                            <h5>
-                                @if (Model.Outlet.Address1 != null)
-                                {
-                                    @Model.Outlet.Address1 @:<br />
-                                }
+                            @if (Model.Outlet.Address1 != null)
+                            {
+                                @Model.Outlet.Address1 @:<br />
+                            }
 
-                                @if (Model.Outlet.Address2 != null)
-                                {
-                                    @Model.Outlet.Address2 @:<br />
-                                }
+                            @if (Model.Outlet.Address2 != null)
+                            {
+                                @Model.Outlet.Address2 @:<br />
+                            }
 
-                                @if (Model.Outlet.Address3 != null)
-                                {
-                                    @Model.Outlet.Address3 @:<br />
-                                }
+                            @if (Model.Outlet.Address3 != null)
+                            {
+                                @Model.Outlet.Address3 @:<br />
+                            }
 
-                                @if (Model.Outlet.Address4 != null)
-                                {
-                                    @Model.Outlet.Address4 @:<br />
-                                }
+                            @if (Model.Outlet.Address4 != null)
+                            {
+                                @Model.Outlet.Address4 @:<br />
+                            }
 
-                                @if (Model.Outlet.PostcodeOut != null)
-                                {
-                                    @Model.Outlet.PostcodeOut @Model.Outlet.PostcodeIn
-                                }
-                            </h5>
+                            @if (Model.Outlet.PostcodeOut != null)
+                            {
+                                @Model.Outlet.PostcodeOut @Model.Outlet.PostcodeIn
+                            }
                         </div>
-                        <div class="col col-md text-left d-flex">
-                            <div class="ml-auto ContactDetails">
-                                <h4>
-                                    <i class="far fa-comment-dots"></i> Contact
-                                </h4>
-                                <h5>
-                                    @if (Model.Outlet.Tel != null)
-                                    {
-                                        <a href="tel:@Model.Outlet.Tel"><i class="fas fa-phone"></i> @Model.Outlet.Tel</a><br />
-                                    }
-
-                                    @if (Model.Outlet.Email != null)
-                                    {
-                                        <a href="mailto:@Model.Outlet.Email?subject=Website%20Enquiry"><i class="fas fa-envelope"></i> @Model.Outlet.Email</a>
-                                    }
-                                </h5>
-                            </div>
+                        <div class="col-lg">
+                            <h4>
+                                <i class="far fa-comment-dots"></i> Contact
+                            </h4>
+                            <a href="tel:@Model.Outlet.Tel"><i class="fas fa-phone"></i> @Model.Outlet.Tel</a><br />
+                            <a href="mailto:@Model.Outlet.Email?subject=Website%20Enquiry"><i class="fas fa-envelope"></i> @Model.Outlet.Email</a>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md OutletFacilities">
-                        <ul class="nav justify-content-center">
-                            @foreach (var facility in Model.Outlet.OutletFacility)
-                            {
-                                <li class="nav-item">
-                                    <span class="nav-link">@Html.Raw(facility.Facility.Name)</span>
-                                </li>
-                            }
-                        </ul>
+                <div class="col-md">
+                    <h3>
+                        Opening Times
+                    </h3>
+                    <div class="alert alert-primary" role="alert">
+                        <p>
+                            Please note that due to ongoing COVID restrictions our opening times may vary from those shown.  Please call if you wish to confirm your visit.  We thank you for your understanding during these difficult times.
+                        </p>
                     </div>
+                    <table class="table table-dark table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Day</th>
+                                <th scope="col">Times</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var day in Model.OpeningDay)
+                            {
+                                {
+                                    var times = Model.Outlet.OutletOpeningTime.Where(o => o.DayID == day.OpeningDayID);
+                                    var dayClass = "";
+
+                                    if (day.OpeningDayID == Model.CurrentDayNumber)
+                                    {
+                                        dayClass = "CurrentDay";
+                                    }
+                                    else
+                                    {
+                                        dayClass = "";
+                                    }
+
+                @if (times.Count() == 0)
+                {
+                <tr class="@dayClass">
+                    <td>@day.DayName</td>
+                    <td>Closed</td>
+                </tr> }
+                                    else
+                                    {
+                                        var timeNum = 0;
+                @foreach (var openingDay in times)
+                {
+                    timeNum += 1;
+
+                <tr class="@dayClass">
+                    @if (timeNum == 1)
+                    {
+                <td rowspan="@times.Count()">@day.DayName</td>}
+                    <td>
+                        @Html.DisplayFor(modelItem => openingDay.OpeningTime) - @Html.DisplayFor(modelItem => openingDay.ClosingTime)
+                    </td>
+                </tr>}}}
+                            }
+
+                            @*@foreach (var day in Model.OpeningDay)
+                {
+                    {
+                        var times = Model.Outlet.OutletOpeningTime.Where(o => o.DayID == day.OpeningDayID).FirstOrDefault();
+
+                        <tr>
+                            <td>@day.DayName</td>
+                            <td class="text-center">
+                                @if (times != null)
+                                {
+                                    @Html.DisplayFor(modelItem => times.OpeningTime) @:- @Html.DisplayFor(modelItem => times.ClosingTime)
+                                }
+                                else
+                                {
+                                    @:Closed
+                                }
+
+                            </td>
+                        </tr>
+                    }
+                }*@
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Left and right controls -->
-    <a class="carousel-control-prev" href="#CarouselHomePage" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </a>
-    <a class="carousel-control-next" href="#CarouselHomePage" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </a>
 </div>
 
-<div class="container MainContent Spacer">
+<div class="container-fluid Background2 SpacerAfter">
     <div class="row">
-        <div class="col-md Spacer">
-            <h3>
-                @Model.Outlet.Title
-            </h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8">
-            @Html.Raw(Model.Outlet.Details)
-        </div>
-        <div class="col-md-4 text-center">
-            <img src="~/images/@Model.Outlet.Photo2" alt="@Model.Outlet.Title" class="img-fluid" />
-        </div>
-    </div>
-    <div class="row Spacer">
-        <div class="col-md">
-            <h3>
-                Contact Details
-            </h3>
+        <div class="container">
             <div class="row">
-                <div class="col-lg SpacerAfter">
-                    <h4>
-                        <i class="fas fa-home"></i> Address
-                    </h4>
-                    @if (Model.Outlet.Address1 != null)
-                    {
-                        @Model.Outlet.Address1 @:<br />
-                    }
-
-                    @if (Model.Outlet.Address2 != null)
-                    {
-                        @Model.Outlet.Address2 @:<br />
-                    }
-
-                    @if (Model.Outlet.Address3 != null)
-                    {
-                        @Model.Outlet.Address3 @:<br />
-                    }
-
-                    @if (Model.Outlet.Address4 != null)
-                    {
-                        @Model.Outlet.Address4 @:<br />
-                    }
-
-                    @if (Model.Outlet.PostcodeOut != null)
-                    {
-                        @Model.Outlet.PostcodeOut @Model.Outlet.PostcodeIn
-                    }
-                </div>
-                <div class="col-lg">
-                    <h4>
-                        <i class="far fa-comment-dots"></i> Contact
-                    </h4>
-                    <a href="tel:@Model.Outlet.Tel"><i class="fas fa-phone"></i> @Model.Outlet.Tel</a><br />
-                    <a href="mailto:@Model.Outlet.Email?subject=Website%20Enquiry"><i class="fas fa-envelope"></i> @Model.Outlet.Email</a>
+                <div class="col col-md Spacer">
+                    <h3>
+                        Contact Form and Map
+                    </h3>
                 </div>
             </div>
-        </div>
-        <div class="col-md">
-            <h3>
-                Opening Times
-            </h3>
-            <table class="table table-hover">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">Day</th>
-                        <th scope="col">Times</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var day in Model.OpeningDay)
-                    {
-                        {
-                            var times = Model.Outlet.OutletOpeningTime.Where(o => o.DayID == day.OpeningDayID);
-                            var dayClass = "";
+            <div class="row">
+                <div class="col-md">
+                    <div class="container">
+                        <form method="post" id="ContactForm">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="row">
+                                <div class="col-xl">
+                                    <h4><i class="far fa-id-card"></i> Personal Details</h4>
 
-                            if (day.OpeningDayID == Model.CurrentDayNumber)
-                            {
-                                dayClass = "table-light CurrentDay";
-                            }
-                            else
-                            {
-                                dayClass = "";
-                            }
+                                    <div class="form-group row">
+                                        <label asp-for="Contact.Name" class="col-md-4 col-form-label"></label>
+                                        <div class="col-md-8">
+                                            <input asp-for="Contact.Name" class="form-control" />
+                                            <span asp-validation-for="Contact.Name" class="text-danger"></span>
+                                        </div>
+                                    </div>
 
-                            @if (times.Count() == 0)
-                            {
-                                <tr class="@dayClass">
-                                    <td>@day.DayName</td>
-                                    <td>Closed</td>
-                                </tr>
-                            }
-                            else
-                            {
-                                var timeNum = 0;
-                                @foreach (var openingDay in times)
-                                {
-                                    timeNum += 1;
+                                    <div class="form-group row">
+                                        <label asp-for="Contact.Email" class="col-md-4 col-form-label"></label>
+                                        <div class="col-md-8">
+                                            <input asp-for="Contact.Email" class="form-control" />
+                                            <span asp-validation-for="Contact.Email" class="text-danger"></span>
+                                        </div>
+                                    </div>
 
-                                    <tr class="@dayClass">
-                                        @if (timeNum == 1)
-                                        {
-                                            <td rowspan="@times.Count()">@day.DayName</td>
-                                        }
-                                        <td>
-                                            @Html.DisplayFor(modelItem => openingDay.OpeningTime) - @Html.DisplayFor(modelItem => openingDay.ClosingTime)
-                                        </td>
-                                    </tr>
-                                }
-                            }
-                        }
-                    }
+                                    <div class="form-group row">
+                                        <label asp-for="Contact.Telephone" class="col-md-4 col-form-label"></label>
+                                        <div class="col-md-8">
+                                            <input asp-for="Contact.Telephone" class="form-control" />
+                                            <span asp-validation-for="Contact.Telephone" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl">
+                                    <h4><i class="fas fa-envelope-open-text"></i> Enquiry</h4>
 
-                    @*@foreach (var day in Model.OpeningDay)
-                        {
-                            {
-                                var times = Model.Outlet.OutletOpeningTime.Where(o => o.DayID == day.OpeningDayID).FirstOrDefault();
-
-                                <tr>
-                                    <td>@day.DayName</td>
-                                    <td class="text-center">
-                                        @if (times != null)
-                                        {
-                                            @Html.DisplayFor(modelItem => times.OpeningTime) @:- @Html.DisplayFor(modelItem => times.ClosingTime)
-                                        }
-                                        else
-                                        {
-                                            @:Closed
-                                        }
-
-                                    </td>
-                                </tr>
-                            }
-                        }*@
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col col-md Spacer">
-            <h3>
-                Contact Form and Map
-            </h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md">
-            <div class="container">
-                <form method="post" id="ContactForm">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="row">
-                        <div class="col-xl">
-                            <h4><i class="far fa-id-card"></i> Personal Details</h4>
-
-                            <div class="form-group row">
-                                <label asp-for="Contact.Name" class="col-md-4 col-form-label"></label>
-                                <div class="col-md-8">
-                                    <input asp-for="Contact.Name" class="form-control" />
-                                    <span asp-validation-for="Contact.Name" class="text-danger"></span>
+                                    <div class="form-group row">
+                                        <div class="col-md">
+                                            <textarea asp-for="Contact.Enquiry" class="form-control"></textarea>
+                                            <span asp-validation-for="Contact.Enquiry" class="text-danger"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label asp-for="Contact.Email" class="col-md-4 col-form-label"></label>
-                                <div class="col-md-8">
-                                    <input asp-for="Contact.Email" class="form-control" />
-                                    <span asp-validation-for="Contact.Email" class="text-danger"></span>
-                                </div>
-                            </div>
+                            <div class="row">
+                                <div class="col-md d-md-block d-sm-none">
 
-                            <div class="form-group row">
-                                <label asp-for="Contact.Telephone" class="col-md-4 col-form-label"></label>
-                                <div class="col-md-8">
-                                    <input asp-for="Contact.Telephone" class="form-control" />
-                                    <span asp-validation-for="Contact.Telephone" class="text-danger"></span>
+                                </div>
+                                <div class="col-xl-4 col-lg-8">
+                                    <input type="hidden" name="Contact.OutletID" value="@Model.Outlet.OutletID" />
+                                    <button type="submit" class="btn btn-dark btn-Bells btn-block SendEnquiry SpacerAfter"><i class="fas fa-paper-plane"></i> Send Enquiry</button>
+                                </div>
+                                <div class="col-md d-md-block d-sm-none">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl">
-                            <h4><i class="fas fa-envelope-open-text"></i> Enquiry</h4>
-
-                            <div class="form-group row">
-                                <div class="col-md">
-                                    <textarea asp-for="Contact.Enquiry" class="form-control"></textarea>
-                                    <span asp-validation-for="Contact.Enquiry" class="text-danger"></span>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
+                        <input id="AntiForgeryTokenID" name="__RequestVerificationToken" type="hidden" value=" @Xsrf.GetAndStoreTokens(this.HttpContext).RequestToken" />
                     </div>
-
-                    <div class="row">
-                        <div class="col-md d-md-block d-sm-none">
-
-                        </div>
-                        <div class="col-xl-4 col-lg-8">
-                            <input type="hidden" name="Contact.OutletID" value="@Model.Outlet.OutletID" />
-                            <button type="submit" class="btn btn-primary btn-block SendEnquiry SpacerAfter"><i class="fas fa-paper-plane"></i> Send Enquiry</button>
-                        </div>
-                        <div class="col-md d-md-block d-sm-none">
-                        </div>
-                    </div>
-                </form>
-                <input id="AntiForgeryTokenID" name="__RequestVerificationToken" type="hidden" value=" @Xsrf.GetAndStoreTokens(this.HttpContext).RequestToken" />
-            </div>
-        </div>
-        <div class="col col-md">
-            <iframe src="@Model.Outlet.GoogleMapLink" class="Map" allowfullscreen></iframe>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md Spacer">
-            <h3>
-                Reviews
-            </h3>
-            <div id="google-reviews" class="SpacerAfter">
-
+                </div>
+                <div class="col col-md">
+                    <iframe src="@Model.Outlet.GoogleMapLink" class="Map" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+@*<div class="container-fluid Background2">
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                <div class="col-md Spacer">
+                    <h3>
+                        Our Customers Say...
+                    </h3>
+                    <div id="google-reviews" class="SpacerAfter">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
 
 @section Scripts {
-    <link rel="stylesheet" href="https://cdn.rawgit.com/stevenmonson/googleReviews/master/google-places.css">
+    @*<link rel="stylesheet" href="https://cdn.rawgit.com/stevenmonson/googleReviews/master/google-places.css">
     <script src="https://cdn.jsdelivr.net/gh/stevenmonson/googleReviews@6e8f0d794393ec657dab69eb1421f3a60add23ef/google-places.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhP1zPFmpJpDVV4zEm6bbLFNLzpk9BnSI&libraries=places"></script>
 
@@ -330,5 +265,5 @@
             , min_rating: 4
             , max_rows: 6
         });
-    </script>
+    </script>*@
 }

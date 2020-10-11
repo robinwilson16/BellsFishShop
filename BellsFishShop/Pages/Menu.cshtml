@@ -4,26 +4,15 @@
     ViewData["Title"] = "Menu";
 }
 
-<partial name="Shared/_FishPartial" />
+@*<partial name="Shared/_FishPartial" />*@
 
 <div id="BellsLogoLargeAnimation">
     <div class="BellsLogoLarge"></div>
 </div>
 
-@if ((bool?)ViewData["KioskMode"] != true)
-{
-    <div id="CarouselMenuPage">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="~/images/MenuFood.jpg" alt="Our Food Menu" class="img-fluid" />
-            </div>
-        </div>
-    </div>
-}
-
 <div class="container Spacer Menu">
     <div class="row">
-        <div class="col-md NavbarLogoTrigger">
+        <div class="col-md">
             <h3>
                 Our @Html.DisplayFor(model => model.MenuRef) Menu
             </h3>
@@ -40,7 +29,7 @@
                     </div>
                     <input type="text" placeholder="Search our @Html.DisplayFor(model => model.MenuRef) menu here" class="form-control SearchMenu" />
                     <div class="input-group-append">
-                        <div class="input-group-text ClearSearch btn btn-primary btn-Bells d-none"><i class="fas fa-eraser"></i>&nbsp;Clear</div>
+                        <div class="input-group-text ClearSearch btn btn-dark btn-Bells d-none"><i class="fas fa-eraser"></i>&nbsp;Clear</div>
                     </div>
                 </div>
             </div>
@@ -53,7 +42,7 @@
         {
             <div class="row Spacer">
                 <div class="col-md">
-                    <div class="bd-callout bd-callout-bells">
+                    <div class="alert alert-dark" role="alert">
                         <div class="row">
                             <div class="col text-center">
                                 <span class="veg-vegetarian"></span> = Vegetarian
@@ -76,7 +65,7 @@
         }
     }
 
-    <div class="row" id="MenuData">
+    <div class="row NavbarLogoTrigger" id="MenuData">
         <div class="col-md text-center Loading">
             <h1><i class="fas fa-spinner fa-spin"></i></h1>
         </div>
@@ -88,7 +77,7 @@
         {
             <div class="row Spacer">
                 <div class="col-md">
-                    <div class="bd-callout bd-callout-bells">
+                    <div class="alert alert-dark" role="alert">
                         <div class="row">
                             <div class="col text-center">
                                 <span class="veg-vegetarian"></span> = Vegetarian
@@ -118,13 +107,6 @@
         }
     }
 </div>
-
-@if ((bool?)ViewData["KioskMode"] != true)
-{
-    <div id="SustainabilityPolicyPopup">
-        <a href="/Sustainability"><i class="fas fa-fish"></i> View Our Fish Sustainability Policy</a>
-    </div>
-}
 
 <!-- Modals -->
 <partial name="_ModalsPartial" model="Model" />

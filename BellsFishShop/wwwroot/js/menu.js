@@ -83,6 +83,9 @@ function loadMenu(data) {
         for (let cat in menuData.menuCategory) {
             let category = menuData.menuCategory[cat];
             let showCategory = true;
+            let numItems = category.menuItem.length;
+            let numItemsPerColumn = Math.ceil(numItems / 3);
+            let numItemInColumn = 0;
 
             if (kioskScreen > 0 && parseInt(kioskScreen) !== category.screenNumber) {
                 showCategory = false;
@@ -105,29 +108,52 @@ function loadMenu(data) {
                 }
 
                 htmlData += `
-                <div class="col-xl-4 col-md-6 Spacer">
-                    <div class="MainContent MenuContent">
-                        <h3>
-                            ${category.title}
-                            ${catTitleExtra}
-                            ${catDescription}
-                        </h3>`;
+                <div class="container MenuContent Spacer">
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="container alert alert-dark">
+                                <div class="row">`;
 
-                if (isAdmin === "True" && kioskScreen <= 0) {
+                if (category.imageURL !== null) {
                     htmlData += `
-                        <div class="alert alert-primary text-right" role="alert">
-                            <button type="button" class="btn btn-primary EditMenu" data-toggle="modal" data-target="#MenuCategoryModal" data-id="${category.menuCategoryID}"><i class="fas fa-edit"></i> Edit...</button>
-                        </div>`;
+                                    <div class="col-lg-10 col-md-8">
+                                        <h3>
+                                            ${category.title}
+                                            ${catTitleExtra}
+                                            ${catDescription}
+                                        </h3>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 gallery">
+                                        <a href="${category.imageURL}" data-toggle="lightbox" data-gallery="FishAndChipsGallery" data-title="" data-footer="Bells Fish Shop">
+                                            <img src="${category.thumbnailURL}" class="img-fluid img-thumbnail">
+                                        </a>
+                                    </div>`;
                 }
-                
+                else {
+                    htmlData += `
+                                    <div class="col-md">
+                                        <h3>
+                                            ${category.title}
+                                            ${catTitleExtra}
+                                            ${catDescription}
+                                        </h3>
+                                    </div>`;
+                }
+
                 htmlData += `
-                        <table class="table table-striped">
-                            <tbody>`;
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">`;
+
+                htmlData += `
+                                        <table class="table table-striped table-dark">
+                                            <tbody>`;
 
                 for (let itm in category.menuItem) {
                     let item = category.menuItem[itm];
                     let titleExtra = "";
                     let description = "";
+                    numItemInColumn += 1;
 
                     if (item.titleExtra !== null) {
                         titleExtra = ` <small class="text-muted">${item.titleExtra}</small>`;
@@ -135,26 +161,58 @@ function loadMenu(data) {
 
                     if (item.description !== null) {
                         description = `
-                        <br />
-                        <small class="text-muted">
-                            ${item.description}
-                        </small>`;
+                            <br />
+                            <small class="text-muted">
+                                ${item.description}
+                            </small>`;
                     }
 
+                    if (numItemInColumn > numItemsPerColumn) {
+                        //Add new column and reset count
+                        numItemInColumn = 1;
+
+                        htmlData += `
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="col-md">
+                                        <table class="table table-striped table-dark">
+                                            <tbody>`;
+                    }
+
+
                     htmlData += `
-                                <tr>
-                                    <td>
-                                        ${item.title}
-                                        ${textReplacements(titleExtra)}
-                                        ${description}
-                                    </td>
-                                    <td class="text-right">${currency.format(item.price)}</td>
-                                </tr>`;
+                                                <tr>
+                                                    <td>
+                                                        ${item.title}
+                                                        ${textReplacements(titleExtra)}
+                                                        ${description}
+                                                    </td>
+                                                    <td class="text-right">${currency.format(item.price)}</td>
+                                                </tr>`;
                 }
 
                 htmlData += `
-                            </tbody>
-                        </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>`;
+
+                if (isAdmin === "True" && kioskScreen <= 0) {
+                    htmlData += `
+                                <div class="row">
+                                    <div class="col-md">
+                                        <div class="alert alert-primary text-right" role="alert">
+                                            <button type="button" class="btn btn-dark EditMenu" data-toggle="modal" data-target="#MenuCategoryModal" data-id="${category.menuCategoryID}"><i class="fas fa-edit"></i> Edit...</button>
+                                        </div>
+                                    </div>
+                                </div>`;
+                }
+
+                htmlData += `
+                            </div>
+                        </div>
                     </div>
                 </div>`;
             }
@@ -188,6 +246,113 @@ function menuItemListLoadComplete(objectID, relativeURL, modelToClose) {
         let menuItemID = $(this).attr("data-id");
         $("#MenuItemID").val(menuItemID);
     });
+
+    $('[data-toggle="popover"]').popover();
+
+    var cols = document.querySelectorAll('table.sortable tr');
+    [].forEach.call(cols, function (col) {
+        col.addEventListener('dragstart', handleDragStart, false);
+        col.addEventListener('dragenter', handleDragEnter, false)
+        col.addEventListener('dragover', handleDragOver, false);
+        col.addEventListener('dragleave', handleDragLeave, false);
+        col.addEventListener('drop', handleDrop, false);
+        col.addEventListener('dragend', handleDragEnd, false);
+    });
+
+    var draggedRow = null;
+    var draggedRowID = null;
+    var destinationRowID = null;
+
+    function handleDragStart(e) {
+        this.style.opacity = '0.4';
+
+        draggedRow = this;
+        draggedRowID = draggedRow.getAttribute("data-id");
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/html', this.innerHTML);
+    }
+
+    function handleDragOver(e) {
+        if (e.preventDefault) {
+            e.preventDefault();
+        }
+
+        e.dataTransfer.dropEffect = 'move';
+
+        return false;
+    }
+
+    function handleDragEnter(e) {
+        this.classList.add('over');
+    }
+
+    function handleDragLeave(e) {
+        this.classList.remove('over');
+    }
+
+    function handleDrop(e) {
+        if (e.stopPropagation) {
+            e.stopPropagation();
+        }
+
+        // Don't do anything if dropping row back where it was.
+        if (draggedRow != this) {
+            // Switch the row content between the source and destination row
+            draggedRow.innerHTML = this.innerHTML;
+            this.innerHTML = e.dataTransfer.getData('text/html');
+
+            // Switch the IDs
+            destinationRowID = this.getAttribute("data-id");
+            draggedRow.setAttribute("data-id", destinationRowID);
+            this.setAttribute("data-id", draggedRowID);
+
+            updateMenuItemPositions(draggedRow);
+        }
+
+        return false;
+    }
+
+    function handleDragEnd(e) {
+        this.style.opacity = '1';
+
+        [].forEach.call(cols, function (col) {
+            col.classList.remove('over');
+        });
+    }
+}
+
+function updateMenuItemPositions(row) {
+    let menuTable = row.parentElement.parentElement;
+    let menuCategoryID = menuTable.getAttribute("data-id");
+    let itemOrder = 0;
+    let sqlRow = ``;
+    let sqlRows = null;
+
+    for (const row of menuTable.rows) {
+        let itemID = row.getAttribute("data-id");
+
+        if (itemID !== null) {
+            itemOrder += 1;
+
+            sqlRow = `(${itemID}, ${itemOrder})`;
+
+            if (sqlRows === null) {
+                sqlRows = sqlRow;
+            }
+            else {
+                sqlRows += ', ' + sqlRow;
+            }
+        }
+    }
+
+    alert(sqlRows);
+    //let items = [];
+    //[].forEach.menuItem(items, function (item) {
+    //    items.push(item.getAttribute("data-id"));
+    //});
+
+    //console.log(items);
+
 }
 
 function menuItemLoadComplete(objectID, relativeURL, modelToClose) {
