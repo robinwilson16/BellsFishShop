@@ -8,21 +8,28 @@ using BellsFishShop.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace BellsFishShop.Pages
 {
     public class ContactModel : PageModel
     {
         private readonly ApplicationDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public ContactModel(ApplicationDbContext context)
+        public ContactModel(
+            ApplicationDbContext context,
+            IConfiguration configuration
+            )
         {
             _context = context;
+            _configuration = configuration;
         }
 
         public void OnGet()
         {
             FormSubmitted = false;
+            EmailAddress = _configuration.GetSection("EmailServer")["EmailAddress"];
             EmailSent = false;
         }
 
@@ -34,6 +41,8 @@ namespace BellsFishShop.Pages
         public bool FormSubmitted { get; set; }
         public bool EmailSent { get; set; }
 
+        public string EmailAddress { get; set; }
+
         public string OutletName { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
@@ -44,6 +53,7 @@ namespace BellsFishShop.Pages
             }
 
             FormSubmitted = true;
+            EmailAddress = _configuration.GetSection("EmailServer")["EmailAddress"];
 
             if (ModelState.IsValid)
             {
@@ -493,8 +503,8 @@ namespace BellsFishShop.Pages
                     </body>
                     </html>";
 
-                string EmailFrom = "robin.wilson@rwsservices.net";
-                string EmailTo = "robin.wilson@rwsservices.net";
+                string EmailFrom = EmailAddress;
+                string EmailTo = EmailAddress;
 
                 EmailSent = Mailer.SendMail(EmailFrom, EmailTo, null, null, EmailSubject, EmailBody);
 
