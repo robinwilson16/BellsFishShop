@@ -4,14 +4,16 @@ using BellsFishShop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BellsFishShop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210815215943_OpeningTimesSecondSetAdjustment")]
+    partial class OpeningTimesSecondSetAdjustment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -275,19 +277,19 @@ namespace BellsFishShop.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<DateTime?>("ClosingTime1")
+                    b.Property<DateTime>("ClosingTime1")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("ClosingTime2")
+                    b.Property<DateTime>("ClosingTime2")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DayID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("OpeningTime1")
+                    b.Property<DateTime>("OpeningTime1")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("OpeningTime2")
+                    b.Property<DateTime>("OpeningTime2")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("OutletID")

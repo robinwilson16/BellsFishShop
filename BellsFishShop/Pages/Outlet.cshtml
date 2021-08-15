@@ -42,35 +42,41 @@
                             </h4>
                             @if (Model.Outlet.Address1 != null)
                             {
-                                @Model.Outlet.Address1 @:<br />
-                            }
+                @Model.Outlet.Address1 @:<br />
+            }
 
                             @if (Model.Outlet.Address2 != null)
                             {
-                                @Model.Outlet.Address2 @:<br />
-                            }
+                @Model.Outlet.Address2 @:<br />
+            }
 
                             @if (Model.Outlet.Address3 != null)
                             {
-                                @Model.Outlet.Address3 @:<br />
-                            }
+                @Model.Outlet.Address3 @:<br />
+            }
 
                             @if (Model.Outlet.Address4 != null)
                             {
-                                @Model.Outlet.Address4 @:<br />
-                            }
+                @Model.Outlet.Address4 @:<br />
+            }
 
                             @if (Model.Outlet.PostcodeOut != null)
                             {
-                                @Model.Outlet.PostcodeOut @Model.Outlet.PostcodeIn
-                            }
+                @Model.Outlet.PostcodeOut @Model.Outlet.PostcodeIn}
                         </div>
                         <div class="col-lg">
                             <h4>
                                 <i class="far fa-comment-dots"></i> Contact
                             </h4>
                             <a href="tel:@Model.Outlet.Tel"><i class="fas fa-phone"></i> @Model.Outlet.Tel</a><br />
-                            <a href="mailto:@Model.Outlet.Email?subject=Website%20Enquiry"><i class="fas fa-envelope"></i> @Model.Outlet.Email</a>
+                            <a href="mailto:@Model.Outlet.Email?subject=Website%20Enquiry%20at%20@{@Model.Outlet.Title.Replace(" ", "%20")}"><i class="fas fa-envelope"></i> @Model.Outlet.Email</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <div class="alert alert-primary" role="alert">
+                                To make a reservation please send an email to the address above or <a href="mailto:@Model.Outlet.Email?subject=Bells%20Reservation%20at%20@{@Model.Outlet.Title.Replace(" ", "%20")}">click here</a>.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -78,56 +84,111 @@
                     <h3>
                         Opening Times
                     </h3>
-                    <div class="alert alert-primary" role="alert">
-                        <p>
-                            Please note that due to ongoing COVID restrictions our opening times may vary from those shown.  Please call if you wish to confirm your visit.  We thank you for your understanding during these difficult times.
-                        </p>
-                    </div>
                     <table class="table table-dark table-hover">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Day</th>
-                                <th scope="col">Times</th>
+                            @if (Model.Outlet.OpeningTimeVenueType1 != null)
+                            {
+                                <th scope="col">@Model.Outlet.OpeningTimeVenueType1</th>
+                            }
+
+                            @if (Model.Outlet.OpeningTimeVenueType2 != null)
+                            {
+                                <th scope="col">@Model.Outlet.OpeningTimeVenueType2</th>
+                            }
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var day in Model.OpeningDay)
+                        @foreach (var day in Model.OpeningDay)
+                        {
+                            var times = Model.Outlet.OutletOpeningTime.Where(o => o.DayID == day.OpeningDayID);
+                            var dayClass = "";
+
+                            if (day.OpeningDayID == Model.CurrentDayNumber)
                             {
-                                {
-                                    var times = Model.Outlet.OutletOpeningTime.Where(o => o.DayID == day.OpeningDayID);
-                                    var dayClass = "";
-
-                                    if (day.OpeningDayID == Model.CurrentDayNumber)
-                                    {
-                                        dayClass = "CurrentDay";
-                                    }
-                                    else
-                                    {
-                                        dayClass = "";
-                                    }
-
-                @if (times.Count() == 0)
-                {
-                <tr class="@dayClass">
-                    <td>@day.DayName</td>
-                    <td>Closed</td>
-                </tr> }
-                                    else
-                                    {
-                                        var timeNum = 0;
-                @foreach (var openingDay in times)
-                {
-                    timeNum += 1;
-
-                <tr class="@dayClass">
-                    @if (timeNum == 1)
-                    {
-                <td rowspan="@times.Count()">@day.DayName</td>}
-                    <td>
-                        @Html.DisplayFor(modelItem => openingDay.OpeningTime) - @Html.DisplayFor(modelItem => openingDay.ClosingTime)
-                    </td>
-                </tr>}}}
+                                dayClass = "CurrentDay";
                             }
+                            else
+                            {
+                                dayClass = "";
+                            }
+
+                            @if (times.Count() == 0)
+                            {
+                                <tr class="@dayClass">
+                                    <td>@day.DayName</td>
+                                @if (Model.Outlet.OpeningTimeVenueType1 != null)
+                                {
+                                    <td>Closed</td>
+                                }
+                
+                                @if (Model.Outlet.OpeningTimeVenueType2 != null)
+                                {
+                                    <td>Closed</td>
+                                }
+                                </tr> 
+                            }
+                            else
+                            {
+                                var timeNum = 0;
+                                var numTimes = times.Count();
+
+                                @foreach (var openingDay in times)
+                                {
+                                    timeNum += 1;
+
+                                <tr class="@dayClass">
+                                @if (timeNum == 1)
+                                {
+                                    <td rowspan="@times.Count()">@day.DayName</td>
+                                }
+
+                                @if (Model.Outlet.OpeningTimeVenueType1 != null)
+                                {
+                                    @if (openingDay.OpeningTime1 != null && openingDay.ClosingTime1 != null) 
+                                    {
+                                    <td>
+                                        @Html.DisplayFor(modelItem => openingDay.OpeningTime1) - @Html.DisplayFor(modelItem => openingDay.ClosingTime1)
+                                    </td>
+                                    }
+                                    else
+                                    {
+                                        @if (timeNum == 1)
+                                        {
+                                    <td>Closed</td>
+                                        }
+                                        else
+                                        {
+                                    <td>&nbsp;</td>
+                                        }
+                                    }
+                                }
+                                  
+                                @if (Model.Outlet.OpeningTimeVenueType2 != null)
+                                {
+                                    @if (openingDay.OpeningTime2 != null && openingDay.ClosingTime2 != null) 
+                                    {
+                                    <td>
+                                        @Html.DisplayFor(modelItem => openingDay.OpeningTime2) - @Html.DisplayFor(modelItem => openingDay.ClosingTime2)
+                                    </td>
+                                    }
+                                    else
+                                    {
+                                        @if (timeNum == 1)
+                                        {
+                                    <td>Closed</td>
+                                        }
+                                        else
+                                        {
+                                    <td>&nbsp;</td>
+                                        }
+                                    }
+                                }
+                                </tr>
+                                }
+                            }
+                        }
 
                             @*@foreach (var day in Model.OpeningDay)
                 {
@@ -152,6 +213,11 @@
                 }*@
                         </tbody>
                     </table>
+                    <div class="alert alert-primary" role="alert">
+                        <p>
+                            Please note that last orders from the restaurant are 30 minutes before the closing time.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

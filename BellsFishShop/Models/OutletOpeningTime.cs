@@ -15,10 +15,16 @@ namespace BellsFishShop.Models
         public int DayID { get; set; }
 
         [DataType(DataType.Time)]
-        public DateTime OpeningTime { get; set; }
+        public DateTime? OpeningTime1 { get; set; }
 
         [DataType(DataType.Time)]
-        public DateTime ClosingTime { get; set; }
+        public DateTime? ClosingTime1 { get; set; }
+
+        [DataType(DataType.Time)]
+        public DateTime? OpeningTime2 { get; set; }
+
+        [DataType(DataType.Time)]
+        public DateTime? ClosingTime2 { get; set; }
 
         public Outlet Outlet { get; set; }
     }

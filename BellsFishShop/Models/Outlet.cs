@@ -71,6 +71,10 @@ namespace BellsFishShop.Models
 
         public string GoogleReviewsLink { get; set; }
 
+        public string OpeningTimeVenueType1 { get; set; }
+
+        public string OpeningTimeVenueType2 { get; set; }
+
         public ICollection<OutletOpeningTime> OutletOpeningTime { get; set; }
 
         public ICollection<OutletFacility> OutletFacility { get; set; }
